@@ -31,7 +31,7 @@ export const ArtlabTheme = {
 
   // soft overrides
   softBackground: ['#222', '#F1F0E9'],
-  softActiveBackground: ['#292929', '#E7E5DB'],
+  softActiveBackground: ['#292929', '#e1e4e8'],
   softBorder: ['#252525', '#E7E5DB'],
 
   // black overrides

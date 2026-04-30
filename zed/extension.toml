@@ -4,7 +4,7 @@ version = "1.0.0"
 schema_version = 1
 authors = ["Arthur Danjou <arthurdanjou@outlook.fr>"]
 description = "ArtLab theme for Zed IDE"
-repository = "https://github.com/arthurdanjou/vscode-theme-artlab"
+repository = "https://github.com/arthurdanjou/theme-artlab"
 
 [themes]
 kind = "syntax"
