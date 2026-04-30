@@ -30,7 +30,9 @@
     "LICENSE.md",
     "ghostty/*",
     "homeassistant/*",
+    "hacs.json",
     "icon.png",
+    "themes/*",
     "vscode/*",
     "zed/**/*"
   ],

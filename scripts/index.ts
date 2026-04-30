@@ -44,10 +44,10 @@ fs.mkdir('./ghostty', { recursive: true })
     ),
   ]))
 
-fs.mkdir('./zed/themes', { recursive: true })
+fs.mkdir('./zed', { recursive: true })
   .then(() => Promise.all([
     fs.writeJSON(
-      './zed/themes/artlab.json',
+      './zed/artlab.json',
       getZedThemeFamily(),
       { spaces: 2 },
     ),
@@ -57,6 +57,14 @@ fs.mkdir('./homeassistant', { recursive: true })
   .then(() => Promise.all([
     fs.writeFile(
       './homeassistant/artlab.yaml',
+      getHomeAssistantThemeFamily(),
+    ),
+  ]))
+
+fs.mkdir('./themes', { recursive: true })
+  .then(() => Promise.all([
+    fs.writeFile(
+      './themes/artlab.yaml',
       getHomeAssistantThemeFamily(),
     ),
   ]))
