@@ -1,0 +1,12 @@
+id = "artlab"
+name = "ArtLab Theme"
+version = "1.0.0"
+schema_version = 1
+authors = ["Arthur Danjou <arthurdanjou@outlook.fr>"]
+description = "ArtLab theme for Zed IDE"
+repository = "https://github.com/arthurdanjou/vscode-theme-artlab"
+
+[themes]
+kind = "syntax"
+name = "ArtLab"
+version = "1.0.0"

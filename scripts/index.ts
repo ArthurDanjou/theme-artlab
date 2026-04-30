@@ -1,13 +1,14 @@
 import fs from 'fs-extra'
-import { getGhosttyTheme } from './extra'
+import { getGhosttyTheme } from './ghostty'
+import { getZedThemeFamily } from './zed'
 import getTheme from './theme'
 
 console.log('starting')
 
-fs.mkdir('./themes', { recursive: true })
+fs.mkdir('./vscode', { recursive: true })
   .then(() => Promise.all([
     fs.writeJSON(
-      './themes/artlab-light.json',
+      './vscode/artlab-light.json',
       getTheme({
         color: 'light',
         name: 'ArtLab Light',
@@ -15,7 +16,7 @@ fs.mkdir('./themes', { recursive: true })
       { spaces: 2 },
     ),
     fs.writeJSON(
-      './themes/artlab-dark.json',
+      './vscode/artlab-dark.json',
       getTheme({
         color: 'dark',
         name: 'ArtLab Dark',
@@ -24,21 +25,30 @@ fs.mkdir('./themes', { recursive: true })
     ),
   ]))
 
-fs.mkdir('./extra', { recursive: true })
+fs.mkdir('./ghostty', { recursive: true })
   .then(() => Promise.all([
     fs.writeFile(
-      './extra/ghostty-artlab-dark',
+      './ghostty/artlab-dark',
       getGhosttyTheme({
         color: 'dark',
         name: 'ArtLab Dark',
       }),
     ),
     fs.writeFile(
-      './extra/ghostty-artlab-light',
+      './ghostty/artlab-light',
       getGhosttyTheme({
         color: 'light',
         name: 'ArtLab Light',
       }),
+    ),
+  ]))
+
+fs.mkdir('./zed/themes', { recursive: true })
+  .then(() => Promise.all([
+    fs.writeJSON(
+      './zed/themes/artlab.json',
+      getZedThemeFamily(),
+      { spaces: 2 },
     ),
   ]))
 

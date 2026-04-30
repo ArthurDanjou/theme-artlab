@@ -28,9 +28,10 @@
   "icon": "icon.png",
   "files": [
     "LICENSE.md",
-    "extra/*",
+    "ghostty/*",
     "icon.png",
-    "themes/*"
+    "vscode/*",
+    "zed/**/*"
   ],
   "engines": {
     "vscode": "^1.82.0",
@@ -42,12 +43,12 @@
       {
         "label": "ArtLab Light",
         "uiTheme": "vs",
-        "path": "./themes/artlab-light.json"
+        "path": "./vscode/artlab-light.json"
       },
       {
         "label": "ArtLab Dark",
         "uiTheme": "vs-dark",
-        "path": "./themes/artlab-dark.json"
+        "path": "./vscode/artlab-dark.json"
       }
     ]
   },
