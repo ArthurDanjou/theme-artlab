@@ -1,7 +1,8 @@
 import fs from 'fs-extra'
 import { getGhosttyTheme } from './ghostty'
-import { getZedThemeFamily } from './zed'
+import { getHomeAssistantThemeFamily } from './homeassistant'
 import getTheme from './theme'
+import { getZedThemeFamily } from './zed'
 
 console.log('starting')
 
@@ -49,6 +50,14 @@ fs.mkdir('./zed/themes', { recursive: true })
       './zed/themes/artlab.json',
       getZedThemeFamily(),
       { spaces: 2 },
+    ),
+  ]))
+
+fs.mkdir('./homeassistant', { recursive: true })
+  .then(() => Promise.all([
+    fs.writeFile(
+      './homeassistant/artlab.yaml',
+      getHomeAssistantThemeFamily(),
     ),
   ]))
 

@@ -29,6 +29,7 @@
   "files": [
     "LICENSE.md",
     "ghostty/*",
+    "homeassistant/*",
     "icon.png",
     "vscode/*",
     "zed/**/*"
