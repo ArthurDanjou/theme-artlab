@@ -40,7 +40,7 @@ Copy [`homeassistant/artlab.yaml`](./homeassistant/artlab.yaml) to your Home Ass
 
 ### Zed
 
-Copy [`zed/themes/artlab.json`](./zed/themes/artlab.json) to your Zed themes directory (`~/.config/zed/themes/`).
+Copy [`zed/artlab.json`](./zed/artlab.json) to your Zed themes directory (`~/.config/zed/themes/`).
 
 ### Ghostty
 
