@@ -37,6 +37,12 @@ ${modeToYaml(light)}
   card-mod-theme: ArtLab
   card-mod-root-yaml: |
     .: |
+      app-header {
+        transition: background-color 0.5s ease;
+      }
+      ha-sidebar {
+        transition: background-color 0.5s ease;
+      }
       @media only screen and (max-width: 768px) {
           .header {
             display: none;
@@ -58,6 +64,7 @@ ${modeToYaml(light)}
      .mdc-dialog .mdc-dialog__container .mdc-dialog__surface {
         box-shadow: none !important;
         border-radius: var(--ha-card-border-radius);
+        transition: background-color 0.5s ease;
      }
     .: |
      :host {
@@ -68,6 +75,7 @@ ${modeToYaml(light)}
       $: |
         .container {
             overflow: hidden;
+            transition: background-color 0.5s ease;
         }
         @media only screen and (min-width: 768px) {
             .container {
@@ -87,8 +95,17 @@ ${modeToYaml(light)}
         }
   card-mod-card: |
     ha-card {
-      transition: none;
+      transition: background-color 0.5s ease;
       border-style: none !important;
+    }
+    .state-icon, ha-icon, ha-state-icon {
+      transition: color 0.5s ease;
+    }
+    mwc-button, paper-button, ha-icon-button {
+      transition: background-color 0.5s ease, color 0.5s ease;
+    }
+    ha-slider, paper-slider {
+      transition: opacity 0.5s ease;
     }`
 }
 

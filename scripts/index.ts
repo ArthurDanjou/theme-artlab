@@ -52,9 +52,9 @@ async function main() {
     { spaces: 2 },
   )
 
-  await fs.mkdir('./themes', { recursive: true })
+  await fs.mkdir('./homeassistant', { recursive: true })
   await fs.writeFile(
-    './themes/artlab.yaml',
+    './homeassistant/artlab.yaml',
     getHomeAssistantThemeFamily(),
   )
 

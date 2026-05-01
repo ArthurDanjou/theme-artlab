@@ -36,16 +36,7 @@ Install from the [Visual Studio Marketplace](https://marketplace.visualstudio.co
 
 ### Home Assistant
 
-#### Via HACS (recommended)
-
-1. Open HACS → **Frontend** → Menu (⋮) → **Custom repositories**
-2. Add `https://github.com/arthurdanjou/theme-artlab` with category **Theme**
-3. Click **Download** on the ArtLab card
-4. Go to your Home Assistant **Profile** → select **ArtLab** in the theme dropdown
-
-#### Manual
-
-Copy [`themes/artlab.yaml`](./themes/artlab.yaml) to your Home Assistant `themes/` directory, then reload themes and select **ArtLab** in your profile settings.
+Copy [`homeassistant/artlab.yaml`](./homeassistant/artlab.yaml) to your Home Assistant `themes/` directory, then reload themes and select **ArtLab** in your profile settings.
 
 ### Zed
 
