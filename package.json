@@ -29,12 +29,8 @@
   "icon": "icon.png",
   "files": [
     "LICENSE.md",
-    "ghostty/*",
-    "hacs.json",
-    "homeassistant/*",
     "icon.png",
-    "vscode/*",
-    "zed/**/*"
+    "vscode/*"
   ],
   "engines": {
     "vscode": "^1.82.0",
