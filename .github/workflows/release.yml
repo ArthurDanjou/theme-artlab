@@ -44,4 +44,3 @@ jobs:
           VSCE_PAT: ${{secrets.VSCE_PAT}}
           OVSX_PAT: ${{secrets.OVSX_PAT}}
           OVSX_NAMESPACE: ${{ secrets.OVSX_NAMESPACE }}
-

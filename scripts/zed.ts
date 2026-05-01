@@ -215,7 +215,7 @@ function getZedTheme(options: GetThemeOptions) {
 
     'search.match_background': pick({ light: '#e6cc7766', dark: '#e6cc7744' }),
 
-    players: [
+    'players': [
       { cursor: primary, background: `${primary}30`, selection: `${primary}30` },
       { cursor: v('green'), background: `${v('green')!}30`, selection: `${v('green')!}30` },
       { cursor: v('red'), background: `${v('red')!}30`, selection: `${v('red')!}30` },
@@ -226,7 +226,7 @@ function getZedTheme(options: GetThemeOptions) {
       { cursor: v('orange'), background: `${v('orange')!}30`, selection: `${v('orange')!}30` },
     ],
 
-    accents: [
+    'accents': [
       primary,
       v('green'),
       v('red'),
@@ -237,7 +237,7 @@ function getZedTheme(options: GetThemeOptions) {
       v('orange'),
     ].filter(Boolean),
 
-    syntax: Object.fromEntries([
+    'syntax': Object.fromEntries([
       syntax('comment', v('comment')!, { font_style: 'italic' }),
       syntax('comment.doc', v('comment')!, { font_style: 'italic' }),
       syntax('constant', v('constant')!),

@@ -4,7 +4,7 @@ import { getHomeAssistantThemeFamily } from './homeassistant'
 import getTheme from './theme'
 import { getZedThemeFamily } from './zed'
 
-console.log('starting')
+console.log('Loading themes...')
 
 fs.mkdir('./vscode', { recursive: true })
   .then(() => Promise.all([
@@ -61,12 +61,4 @@ fs.mkdir('./homeassistant', { recursive: true })
     ),
   ]))
 
-fs.mkdir('./themes', { recursive: true })
-  .then(() => Promise.all([
-    fs.writeFile(
-      './themes/artlab.yaml',
-      getHomeAssistantThemeFamily(),
-    ),
-  ]))
-
-console.log('finished')
+console.log('Finished')

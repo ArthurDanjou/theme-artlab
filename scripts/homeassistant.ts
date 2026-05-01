@@ -201,7 +201,7 @@ function getMode(options: GetThemeOptions): Record<string, any> {
     // Switch
     'switch-unchecked-color': pick({ light: '#9ca0b0', dark: '#70889e' }),
     'switch-checked-button-color': isDark ? 'var(--accent-color)' : 'var(--on)',
-    ...(!isDark ? { 'on': '#6c6f85' } : {}),
+    ...(!isDark ? { on: '#6c6f85' } : {}),
     'switch-unchecked-track-color': 'var(--background-color-2)',
     'switch-checked-track-color': 'var(--background-color-2)',
 
