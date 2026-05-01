@@ -4,10 +4,11 @@ import { getHomeAssistantThemeFamily } from './homeassistant'
 import getTheme from './theme'
 import { getZedThemeFamily } from './zed'
 
-console.log('Loading themes...')
+async function main() {
+  console.log('Loading themes...')
 
-fs.mkdir('./vscode', { recursive: true })
-  .then(() => Promise.all([
+  await fs.mkdir('./vscode', { recursive: true })
+  await Promise.all([
     fs.writeJSON(
       './vscode/artlab-light.json',
       getTheme({
@@ -24,10 +25,10 @@ fs.mkdir('./vscode', { recursive: true })
       }),
       { spaces: 2 },
     ),
-  ]))
+  ])
 
-fs.mkdir('./ghostty', { recursive: true })
-  .then(() => Promise.all([
+  await fs.mkdir('./ghostty', { recursive: true })
+  await Promise.all([
     fs.writeFile(
       './ghostty/artlab-dark',
       getGhosttyTheme({
@@ -42,23 +43,22 @@ fs.mkdir('./ghostty', { recursive: true })
         name: 'ArtLab Light',
       }),
     ),
-  ]))
+  ])
 
-fs.mkdir('./zed', { recursive: true })
-  .then(() => Promise.all([
-    fs.writeJSON(
-      './zed/artlab.json',
-      getZedThemeFamily(),
-      { spaces: 2 },
-    ),
-  ]))
+  await fs.mkdir('./zed', { recursive: true })
+  await fs.writeJSON(
+    './zed/artlab.json',
+    getZedThemeFamily(),
+    { spaces: 2 },
+  )
 
-fs.mkdir('./homeassistant', { recursive: true })
-  .then(() => Promise.all([
-    fs.writeFile(
-      './homeassistant/artlab.yaml',
-      getHomeAssistantThemeFamily(),
-    ),
-  ]))
+  await fs.mkdir('./themes', { recursive: true })
+  await fs.writeFile(
+    './themes/artlab.yaml',
+    getHomeAssistantThemeFamily(),
+  )
 
-console.log('Finished')
+  console.log('Finished')
+}
+
+main().catch(console.error)

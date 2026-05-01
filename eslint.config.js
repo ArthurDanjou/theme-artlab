@@ -4,6 +4,7 @@ export default antfu({
   ignores: [
     'ghostty/**',
     'homeassistant/**',
+    'themes/**',
     'vscode/**',
     'zed/**',
   ],
