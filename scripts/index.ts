@@ -1,6 +1,7 @@
 import fs from 'fs-extra'
 import { getGhosttyTheme } from './ghostty'
 import { getHomeAssistantThemeFamily } from './homeassistant'
+import { getRaycastTheme } from './raycast'
 import getTheme from './theme'
 import { getZedThemeFamily } from './zed'
 
@@ -51,6 +52,26 @@ async function main() {
     getZedThemeFamily(),
     { spaces: 2 },
   )
+
+  await fs.mkdir('./raycast', { recursive: true })
+  await Promise.all([
+    fs.writeJSON(
+      './raycast/artlab-dark.json',
+      getRaycastTheme({
+        color: 'dark',
+        name: 'ArtLab Dark',
+      }),
+      { spaces: 2 },
+    ),
+    fs.writeJSON(
+      './raycast/artlab-light.json',
+      getRaycastTheme({
+        color: 'light',
+        name: 'ArtLab Light',
+      }),
+      { spaces: 2 },
+    ),
+  ])
 
   await fs.mkdir('./homeassistant', { recursive: true })
   await fs.writeFile(

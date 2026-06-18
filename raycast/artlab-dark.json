@@ -1,0 +1,21 @@
+{
+  "author": "Arthur Danjou",
+  "authorUsername": "ArthurDanjou",
+  "version": "1",
+  "name": "ArtLab Dark",
+  "appearance": "dark",
+  "colors": {
+    "background": "#121212",
+    "backgroundSecondary": "#181818",
+    "text": "#dbd7caee",
+    "selection": "#74c7ec",
+    "loader": "#74c7ec",
+    "red": "#f38ba8",
+    "orange": "#fab387",
+    "yellow": "#f9e2af",
+    "green": "#a6e3a1",
+    "blue": "#89b4fa",
+    "purple": "#cba6f7",
+    "magenta": "#f5c2e7"
+  }
+}

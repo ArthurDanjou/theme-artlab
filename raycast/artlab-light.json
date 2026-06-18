@@ -1,0 +1,21 @@
+{
+  "author": "Arthur Danjou",
+  "authorUsername": "ArthurDanjou",
+  "version": "1",
+  "name": "ArtLab Light",
+  "appearance": "light",
+  "colors": {
+    "background": "#ffffff",
+    "backgroundSecondary": "#f7f7f7",
+    "text": "#393a34",
+    "selection": "#f2a272",
+    "loader": "#f2a272",
+    "red": "#d20f39",
+    "orange": "#fe640b",
+    "yellow": "#df8e1d",
+    "green": "#40a02b",
+    "blue": "#1e66f5",
+    "purple": "#8839ef",
+    "magenta": "#ea76cb"
+  }
+}

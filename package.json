@@ -29,10 +29,11 @@
   "icon": "icon.png",
   "files": [
     "LICENSE.md",
+    "homeassistant/*",
     "icon.png",
+    "raycast/*",
     "vscode/*",
-    "zed/*",
-    "homeassistant/*"
+    "zed/*"
   ],
   "engines": {
     "vscode": "^1.82.0",
