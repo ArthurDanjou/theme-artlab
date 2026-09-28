@@ -1,0 +1,56 @@
+{
+  "manifest_version": 2,
+  "name": "ArtLab Light",
+  "description": "ArtLab Light - the clarity of Vitesse with the cozy Catppuccin palette.",
+  "version": "1.1.4",
+  "author": "Arthur Danjou",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "arthurdanjou.artlab-light@addons.thunderbird.net",
+      "strict_min_version": "78.0"
+    }
+  },
+  "theme": {
+    "colors": {
+      "frame": "#ffffff",
+      "frame_inactive": "#ffffff",
+      "tab_background_text": "#393a34",
+      "tab_text": "#393a34",
+      "tab_line": "#f2a272",
+      "tab_loading": "#f2a272",
+      "tab_selected": "#f7f7f7",
+      "toolbar": "#f7f7f7",
+      "bookmark_text": "#393a34",
+      "toolbar_text": "#393a34",
+      "toolbar_field": "#ffffff",
+      "toolbar_field_text": "#393a34",
+      "toolbar_field_highlight": "#f2a272",
+      "toolbar_field_highlight_text": "#ffffff",
+      "toolbar_field_border": "#f0f0f0",
+      "toolbar_field_focus": "#ffffff",
+      "toolbar_field_text_focus": "#393a34",
+      "toolbar_field_border_focus": "#f2a272",
+      "toolbar_top_separator": "#f0f0f0",
+      "toolbar_bottom_separator": "#f0f0f0",
+      "toolbar_vertical_separator": "#f0f0f0",
+      "sidebar": "#ffffff",
+      "sidebar_text": "#393a34",
+      "sidebar_highlight": "#f7f7f7",
+      "sidebar_highlight_text": "#393a34",
+      "sidebar_highlight_border": "#f0f0f0",
+      "sidebar_border": "#f0f0f0",
+      "popup": "#ffffff",
+      "popup_text": "#393a34",
+      "popup_border": "#f0f0f0",
+      "popup_highlight": "#f7f7f7",
+      "popup_highlight_text": "#393a34",
+      "button_background_hover": "#f7f7f7",
+      "button_background_active": "#e1e4e8",
+      "icons": "#393a34",
+      "icons_attention": "#f2a272"
+    },
+    "properties": {
+      "color_scheme": "light"
+    }
+  }
+}

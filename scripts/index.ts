@@ -3,6 +3,7 @@ import { getGhosttyTheme } from './ghostty'
 import { getHomeAssistantThemeFamily } from './homeassistant'
 import { getRaycastTheme } from './raycast'
 import getTheme from './theme'
+import { getThunderbirdManifest } from './thunderbird'
 import { getZedThemeFamily } from './zed'
 
 async function main() {
@@ -78,6 +79,28 @@ async function main() {
     './homeassistant/artlab.yaml',
     getHomeAssistantThemeFamily(),
   )
+
+  const { version } = await fs.readJSON('./package.json')
+  await Promise.all([
+    fs.outputJSON(
+      './thunderbird/artlab-dark/manifest.json',
+      getThunderbirdManifest({
+        color: 'dark',
+        name: 'ArtLab Dark',
+        version,
+      }),
+      { spaces: 2 },
+    ),
+    fs.outputJSON(
+      './thunderbird/artlab-light/manifest.json',
+      getThunderbirdManifest({
+        color: 'light',
+        name: 'ArtLab Light',
+        version,
+      }),
+      { spaces: 2 },
+    ),
+  ])
 
   console.log('Finished')
 }

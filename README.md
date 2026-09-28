@@ -13,7 +13,7 @@ Product Icons | <a href="https://github.com/antfu/vscode-icons-carbon">Carbon</a
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Inspiration | <a href="https://github.com/antfu/vitesse">Vitesse</a> + <a href="https://github.com/catppuccin/catppuccin">Catppuccin</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</samp></sub>
 </p>
 
-ArtLab is a cross-platform theme that blends the clarity of Vitesse (by antfu) with the cozy palettes of Catppuccin. Available for VS Code, Home Assistant, Zed, and Ghostty.
+ArtLab is a cross-platform theme that blends the clarity of Vitesse (by antfu) with the cozy palettes of Catppuccin. Available for VS Code, Home Assistant, Zed, Ghostty, and Thunderbird.
 
 ## Match with System
 
@@ -51,6 +51,17 @@ theme = artlab-dark
 # or
 theme = artlab-light
 ```
+
+### Thunderbird
+
+Two static themes are generated in [`thunderbird/`](./thunderbird/) (`artlab-dark/` and `artlab-light/`), each containing a `manifest.json`.
+
+To install one of them:
+
+1. Zip the contents of `thunderbird/artlab-dark` (or `artlab-light`) so that `manifest.json` is at the root of the archive, then rename it to `artlab-dark.xpi` (an XPI file is just a ZIP archive).
+2. In Thunderbird, open the Add-ons Manager, click the gear icon, choose **Install Add-on From File**, and select the `.xpi` file.
+
+Thunderbird static themes cannot switch automatically between light and dark, so install the variant matching your preference.
 
 ## Links
 
