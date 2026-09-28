@@ -10,9 +10,34 @@ function formatValue(value: any): string {
   return `"${String(value)}"`
 }
 
+// Section headers emitted in the generated YAML.
+// Geometry (round, padding, margin, gaps, borders) follows Bubble Light & Dark v1.2.
+const SECTION_HEADERS: Record<string, string> = {
+  'primary-font-family': 'Fonts',
+  'text-color': 'Text',
+  'mdc-text-field-fill-color': 'Text Fields and Dropdown',
+  'app-header-background-color': 'Main Colors',
+  'background-color': 'Background',
+  'card-background-color': 'Card - geometry from Bubble v1.2',
+  'paper-item-icon-color': 'Icons',
+  'sidebar-background-color': 'Sidebar',
+  'paper-slider-knob-color': 'Sliders',
+  'paper-toggle-button-checked-bar-color': 'Toggle',
+  'switch-unchecked-color': 'Switch',
+  'paper-radio-button-checked-color': 'Radio Button',
+  'more-info-header-background': 'Popups',
+  'table-row-background-color': 'Tables',
+  'label-badge-background-color': 'Badges',
+  'ch-background': 'Custom Header',
+  'mini-media-player-base-color': 'Mini Mediaplayer',
+}
+
 function modeToYaml(mode: Record<string, any>): string {
   const lines: string[] = []
   for (const [key, value] of Object.entries(mode)) {
+    const section = SECTION_HEADERS[key]
+    if (section)
+      lines.push(`      # ${section}`)
     const formatted = formatValue(value)
     if (formatted.includes('\n')) {
       lines.push(`      ${key}: |${formatted}`)
@@ -28,13 +53,18 @@ export function getHomeAssistantThemeFamily(): string {
   const dark = getMode({ color: 'dark', name: 'ArtLab Dark' })
   const light = getMode({ color: 'light', name: 'ArtLab Light' })
 
-  return `ArtLab:
+  return `# ArtLab theme
+# Colors: ArtLab (custom, untouched)
+# Geometry (round, padding, margin, gaps, borders): based on Bubble Light & Dark v1.2
+# Bubble is a modified Noctis (aFFekopp) maintained by Clooos.
+ArtLab:
   modes:
     dark:
 ${modeToYaml(dark)}
     light:
 ${modeToYaml(light)}
   card-mod-theme: ArtLab
+  # Card-Mod layout from Bubble v1.2, color transitions kept for ArtLab
   card-mod-root-yaml: |
     .: |
       app-header {
@@ -173,7 +203,7 @@ function getMode(options: GetThemeOptions): Record<string, any> {
     'secondary-background-color': 'var(--background-color-2)',
     'markdown-code-background-color': 'var(--background-color)',
 
-    // Card
+    // Card - geometry from Bubble v1.2 (round, padding, margin, gaps, borders)
     'card-background-color': 'var(--ha-card-background)',
     'ha-card-background': activeBackground,
     'ha-card-box-shadow': 'none',
