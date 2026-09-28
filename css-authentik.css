@@ -1,0 +1,2163 @@
+/* ==========================================================================
+   ArtLab Theme — Authentik Glassmorphism (adapté de V1.1 Badge Fix)
+   Basé sur la palette ArtLab (Vitesse + Catppuccin) + effet glassmorphism
+   Installation : Authentik Admin > Customization > Brands > Custom CSS
+                ou Système > Marques > Modifier > Custom CSS
+   Palette source : scripts/colors.ts / vscode/artlab-*.json
+   ========================================================================== */
+
+/* ===== TOKENS ARTLAB — Light par défaut (identique à css-uptimekuma.css) ===== */
+:root {
+  --color-red: #d20f39;
+  --color-orange: #fe640b;
+  --color-yellow: #df8e1d;
+  --color-teal: #179299;
+  --color-blue: #1e66f5;
+  --color-green: #40a02b;
+  --color-purple: #8839ef;
+  --color-pink: #ea76cb;
+  --rgb-color-red: 210, 15, 57;
+  --rgb-color-orange: 254, 100, 11;
+  --rgb-color-yellow: 223, 142, 29;
+  --rgb-color-teal: 23, 146, 153;
+  --rgb-color-blue: 30, 102, 245;
+  --rgb-color-green: 64, 160, 43;
+  --rgb-color-purple: 136, 57, 239;
+  --rgb-color-pink: 234, 118, 203;
+
+  --color-primary: #f2a272;
+  --color-primary-hover: #e8915e;
+  --color-primary-active: #d9804a;
+  --rgb-color-primary: 242, 162, 114;
+
+  --color-bg: #F1F0E9;
+  --color-bg-page: #F1F0E9;
+  --color-bg-card: #ffffff;
+  --color-bg-input: #f7f7f7;
+  --color-bg-hover: #f7f7f7;
+  --color-bg-sidebar: #ffffff;
+
+  --color-text-primary: #4e4f47;
+  --color-text-heading: #393a34;
+  --color-text-secondary: #393a3490;
+  --color-text-muted: #7c7f93;
+  --color-text-inverse: #ffffff;
+
+  --color-border: #E7E5DB;
+  --color-border-strong: #d1d5da;
+  --color-border-light: #f0f0f0;
+
+  --font-family: "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "Geist Mono", "JetBrains Mono", ui-monospace, monospace;
+
+  --radius-card: 16px;
+  --radius-pill: 9999px;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, .04);
+  --shadow-md: 0 1px 3px rgba(0, 0, 0, .05), 0 1px 2px rgba(0, 0, 0, .03);
+  --shadow-lg: 0 4px 12px rgba(0, 0, 0, .06), 0 1px 3px rgba(0, 0, 0, .04);
+
+  /* Glass — teinte ArtLab */
+  --artlab-glass-bg: rgba(255, 255, 255, 0.03);
+  --artlab-glass-border: rgba(255, 255, 255, 0.10);
+  --artlab-glass-blur: 40px;
+  --artlab-card-glass: rgba(255, 255, 255, 0.05);
+
+  color-scheme: light;
+}
+
+/* Dark — suit les valeurs ArtLab Dark (vscode/artlab-dark.json) */
+:root.dark,
+html[data-theme="dark"],
+html.pf-v5-theme-dark,
+.dark {
+  --color-red: #f38ba8;
+  --color-orange: #fab387;
+  --color-yellow: #f9e2af;
+  --color-teal: #94e2d5;
+  --color-blue: #89b4fa;
+  --color-green: #a6e3a1;
+  --color-purple: #cba6f7;
+  --color-pink: #f5c2e7;
+  --rgb-color-red: 243, 139, 168;
+  --rgb-color-orange: 250, 179, 135;
+  --rgb-color-yellow: 249, 226, 175;
+  --rgb-color-teal: 148, 226, 213;
+  --rgb-color-blue: 137, 180, 250;
+  --rgb-color-green: 166, 227, 161;
+  --rgb-color-purple: 203, 166, 247;
+  --rgb-color-pink: 245, 194, 231;
+
+  --color-primary: #74c7ec;
+  --color-primary-hover: #89d2f0;
+  --color-primary-active: #5ebce8;
+  --rgb-color-primary: 116, 199, 236;
+
+  --color-bg: #121212;
+  --color-bg-page: #121212;
+  --color-bg-card: #1e1e1e;
+  --color-bg-input: #181818;
+  --color-bg-hover: #1a1a1a;
+  --color-bg-sidebar: #121212;
+
+  --color-text-primary: #bfbaaa;
+  --color-text-heading: #dbd7caee;
+  --color-text-secondary: #dedcd590;
+  --color-text-muted: #9399b2;
+  --color-text-inverse: #121212;
+
+  --color-border: #2a2a2a;
+  --color-border-strong: #3a3a3a;
+  --color-border-light: #252525;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, .2);
+  --shadow-md: 0 1px 3px rgba(0, 0, 0, .25), 0 1px 2px rgba(0, 0, 0, .15);
+  --shadow-lg: 0 4px 12px rgba(0, 0, 0, .3), 0 1px 3px rgba(0, 0, 0, .2);
+
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --color-primary: #74c7ec;
+    --rgb-color-primary: 116, 199, 236;
+    --color-bg: #121212;
+    --color-bg-page: #121212;
+    --color-bg-card: #1e1e1e;
+    --color-text-heading: #dbd7caee;
+    --color-text-primary: #bfbaaa;
+    --color-border: #2a2a2a;
+    color-scheme: dark;
+  }
+}
+
+/* ===== EASY CUSTOMIZATION — ArtLab ===== */
+:root {
+    --ak-flow-background: url(https://i.imgur.com/zMTDTxy.jpeg);
+    --ak-social-separator-text: "Continuer avec";
+    --ak-accent: var(--color-primary);
+    --ak-accent-hover: var(--color-primary-hover);
+    --ak-accent-rgb: var(--rgb-color-primary);
+}
+
+
+/* ===== TOTP COPY BUTTON STYLE (NEUTRAL WHITE) ===== */
+:host(ak-stage-authenticator-totp) .pf-c-button.pf-m-secondary {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(10px) !important;
+    border-radius: 12px !important;
+    padding: 8px 16px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease !important;
+    margin-top: 5px !important;
+}
+
+:host(ak-stage-authenticator-totp) .pf-c-button.pf-m-secondary:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Remove reflection for this specific button to avoid glitches */
+:host(ak-stage-authenticator-totp) .pf-c-button.pf-m-secondary::before,
+:host(ak-stage-authenticator-totp) .pf-c-button.pf-m-secondary::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* Fix icon positioning (it was absolute, causing overlap) */
+:host(ak-stage-authenticator-totp) .pf-c-button.pf-m-secondary .pf-c-button__progress {
+    position: static !important;
+    transform: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+}
+
+:host(ak-stage-authenticator-totp) .qr-container {
+    width: 100% !important;
+    height: auto !important;
+    max-width: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 10px 0 !important;
+    border-radius: 0 !important;
+}
+
+:host(ak-stage-authenticator-totp) qr-code {
+    max-width: 150px !important;
+    width: 150px !important;
+    height: 150px !important;
+    margin: 0 0 15px 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+    background: white !important;
+    overflow: hidden !important;
+}
+
+:host(ak-stage-authenticator-totp) qr-code svg {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+}
+
+:host(ak-stage-authenticator-totp) .pf-c-form__group:not([hidden]) p,
+:host(ak-stage-authenticator-totp) .pf-c-form__group:not([hidden]) li {
+    font-size: 13px !important;
+    line-height: 1.4 !important;
+    opacity: 0.9 !important;
+    margin-bottom: 8px !important;
+}
+
+:host(ak-stage-authenticator-totp) .pf-c-form__group label {
+    font-size: 14px !important;
+    margin-bottom: 4px !important;
+}
+
+/* ===== FORCE DARK MODE — Réécrit en ArtLab (remplace le bloc oklab) ===== */
+:root {
+    /* Palette ArtLab mappée sur PF */
+    --pf-global--palette--black-50: #dbd7ca !important;
+    --pf-global--palette--black-100: #bfbaaa !important;
+    --pf-global--palette--black-200: #9399b2 !important;
+    --pf-global--palette--black-300: #7c7f93 !important;
+    --pf-global--palette--black-400: #6a737d !important;
+    --pf-global--palette--black-500: #4e4f47 !important;
+    --pf-global--palette--black-600: #393a34 !important;
+    --pf-global--palette--black-700: #2a2a2a !important;
+    --pf-global--palette--black-800: #1e1e1e !important;
+    --pf-global--palette--black-900: #121212 !important;
+    --pf-global--palette--red-9999: var(--color-red) !important;
+    --pf-global--palette--red-8888: var(--color-red) !important;
+    --pf-v4-global--palette--blue-300: var(--color-primary) !important;
+    --ak-global--palette--blue-300: var(--color-primary) !important;
+    --pf-global--palette--blue-300: var(--color-primary) !important;
+    --pf-global--BackgroundColor--100: var(--color-bg-card) !important;
+    --pf-global--BackgroundColor--150: var(--color-bg-input) !important;
+    --pf-global--BackgroundColor--200: var(--color-bg-page) !important;
+    --pf-global--BackgroundColor--300: #2a2a2a !important;
+    --pf-global--BackgroundColor--400: #252525 !important;
+    --pf-global--BackgroundColor--light-100: var(--color-bg-card) !important;
+    --pf-global--BackgroundColor--light-200: var(--color-bg-page) !important;
+    --pf-global--BackgroundColor--light-300: #2a2a2a !important;
+    --pf-global--BackgroundColor--dark-100: var(--color-bg-card) !important;
+    --pf-global--BackgroundColor--dark-200: var(--color-bg-page) !important;
+    --pf-global--BackgroundColor--dark-300: #2a2a2a !important;
+    --pf-global--BackgroundColor--dark-400: #252525 !important;
+    --pf-global--BorderColor--100: var(--color-border) !important;
+    --pf-global--BorderColor--200: var(--color-border-strong) !important;
+    --pf-global--BorderColor--300: var(--color-border) !important;
+    --pf-global--BorderColor--400: var(--color-text-muted) !important;
+    --pf-global--Color--100: var(--color-text-heading) !important;
+    --pf-global--Color--200: var(--color-text-muted) !important;
+    --pf-global--active-color--100: var(--color-primary) !important;
+    --pf-global--primary-color--300: var(--color-primary) !important;
+    --pf-global--primary-color--100: var(--color-primary) !important;
+    --pf-global--link--Color: var(--color-primary) !important;
+    --pf-global--link--Color--hover: var(--color-primary-hover) !important;
+    --pf-global--link--Color--visited: var(--color-purple) !important;
+    --pf-global--disabled-color--100: var(--color-text-muted) !important;
+    --pf-global--disabled-color--200: var(--color-border) !important;
+    --pf-global--disabled-color--300: var(--color-text-muted) !important;
+    --pf-global--icon--Color--light: var(--color-text-muted) !important;
+    --pf-global--icon--Color--dark: var(--color-text-muted) !important;
+    --pf-global--Color--dark-100: var(--color-text-heading) !important;
+    --pf-global--Color--dark-200: var(--color-text-muted) !important;
+    --pf-global--Color--light-100: var(--color-text-heading) !important;
+    --pf-global--Color--light-200: var(--color-text-muted) !important;
+    --pf-global--Color--light-300: var(--color-text-primary) !important;
+    --pf-global--BorderColor--dark-100: var(--color-border) !important;
+    --pf-global--BorderColor--light-100: var(--color-border) !important;
+    --pf-global--primary-color--light-100: var(--color-primary) !important;
+    --pf-global--primary-color--dark-100: var(--color-primary) !important;
+    --pf-global--link--Color--light: var(--color-primary) !important;
+    --pf-global--link--Color--light--hover: var(--color-primary-hover) !important;
+    --pf-global--link--Color--dark: var(--color-primary) !important;
+    --pf-global--link--Color--dark--hover: var(--color-primary-hover) !important;
+    --pf-global--default-color--100: var(--color-teal) !important;
+    --pf-global--default-color--300: var(--color-teal) !important;
+    --pf-global--info-color--100: var(--color-blue) !important;
+    --pf-global--info-color--200: #89b4fa !important;
+    --pf-global--warning-color--100: var(--color-orange) !important;
+    --pf-global--warning-color--200: #fab387 !important;
+    --pf-global--danger-color--100: var(--color-red) !important;
+    --pf-global--danger-color--200: #f38ba8 !important;
+    --pf-global--success-color--100: var(--color-green) !important;
+    --pf-global--success-color--200: #a6e3a1 !important;
+    color-scheme: dark !important;
+}
+
+[media](media) (prefers-color-scheme: light) {
+    :root {
+        --pf-global--BackgroundColor--100: var(--color-bg-card) !important;
+        --pf-global--BackgroundColor--light-100: var(--color-bg-card) !important;
+        --pf-global--Color--100: var(--color-text-heading) !important;
+        --pf-global--Color--light-100: var(--color-text-heading) !important;
+        --pf-global--Color--dark-100: var(--color-text-heading) !important;
+    }
+}
+
+/* ===== BOUTONS OUI/NON & ACTIONS ===== */
+.pf-c-login .pf-c-form__actions,
+.pf-c-login .pf-c-form__group-control,
+body:has(.pf-c-login) .pf-c-form__actions,
+body:has(.pf-c-login) .pf-c-form__group-control {
+    display: flex !important;
+    gap: 15px !important;
+    margin-top: 25px !important;
+    justify-content: space-between !important;
+    overflow: visible !important;
+    padding: 5px !important;
+}
+
+.pf-c-login .pf-c-form__actions button,
+.pf-c-login .pf-c-form__group-control button,
+body:has(.pf-c-login) .pf-c-form__actions button,
+body:has(.pf-c-login) .pf-c-form__group-control button,
+.pf-c-login button[type="button"],
+body:has(.pf-c-login) button[type="button"],
+:host(ak-stage-user-login) button[type="submit"] {
+    border-radius: 14px !important;
+    padding: 10px 20px !important;
+    font-weight: 600 !important;
+    font-size: 15px !important;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    text-transform: none !important;
+    border: none !important;
+    backdrop-filter: blur(20px) saturate(130%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(130%) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    min-width: 120px !important;
+    cursor: pointer !important;
+    outline: none !important;
+}
+
+/* LOGIN BUTTON — ArtLab glass blanc */
+.pf-c-login .pf-c-form__actions button:first-child,
+.pf-c-login .pf-c-form__group-control button:first-child,
+body:has(.pf-c-login) .pf-c-form__actions button:first-child,
+body:has(.pf-c-login) .pf-c-form__group-control button:first-child,
+.pf-c-login button[type="button"]:first-of-type,
+body:has(.pf-c-login) button[type="button"]:first-of-type,
+:host(ak-stage-identification) .pf-c-button.pf-m-primary,
+:host(ak-stage-identification) button[type="submit"].pf-c-button.pf-m-primary {
+    background: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    color: white !important;
+    font-weight: 600 !important;
+    padding: 14px 24px !important;
+    border-radius: 14px !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(255, 255, 255, 0.1) !important;
+}
+
+:host(ak-stage-identification) .pf-c-button.pf-m-primary:hover,
+:host(ak-stage-identification) button[type="submit"].pf-c-button.pf-m-primary:hover {
+    background: rgba(255, 255, 255, 0.25) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), 0 4px 12px rgba(255, 255, 255, 0.15) !important;
+}
+
+/* STAY CONNECTED — neutre glass (ArtLab) */
+:host(ak-stage-user-login) .pf-c-button.pf-m-primary,
+:host(ak-stage-user-login) .pf-c-button.pf-m-secondary {
+    background: rgba(255, 255, 255, 0.08) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+    font-weight: 500 !important;
+    padding: 10px 24px !important;
+    border-radius: 14px !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+    margin: 0 !important;
+}
+
+:host(ak-stage-user-login) .pf-c-button.pf-m-primary:hover,
+:host(ak-stage-user-login) .pf-c-button.pf-m-secondary:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+:host(ak-stage-user-login) .pf-c-button.pf-m-primary::before,
+:host(ak-stage-user-login) .pf-c-button.pf-m-secondary::before {
+    display: none !important;
+    content: none !important;
+}
+
+/* SHARED ANIMATIONS & FIXES */
+:host(ak-stage-identification) .pf-c-button.pf-m-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.2) 50%, transparent 100%);
+    transition: left 0.6s ease;
+    z-index: 1;
+    border-radius: 14px;
+}
+
+:host(ak-stage-identification) .pf-c-button.pf-m-primary:hover::before {
+    left: 100%;
+}
+
+:host(ak-stage-user-login) .pf-c-button.pf-m-primary *,
+:host(ak-stage-user-login) .pf-c-button.pf-m-secondary *,
+:host(ak-stage-identification) .pf-c-button.pf-m-primary *,
+:host(ak-stage-identification) .pf-c-button.pf-m-secondary * {
+    position: relative !important;
+    z-index: 2 !important;
+}
+
+:host(ak-stage-user-login) .pf-c-button.pf-m-primary::after,
+:host(ak-stage-user-login) .pf-c-button.pf-m-secondary::after,
+:host(ak-stage-identification) .pf-c-button.pf-m-primary::after,
+:host(ak-stage-identification) .pf-c-button.pf-m-secondary::after {
+    border: none !important;
+    display: none !important;
+}
+
+:host(ak-stage-user-login) .pf-c-button:focus,
+:host(ak-stage-user-login) .pf-c-button:active,
+:host(ak-stage-identification) .pf-c-button:focus,
+:host(ak-stage-identification) .pf-c-button:active {
+    outline: none !important;
+}
+
+/* Button 'No' — ArtLab danger glass (Catppuccin red) */
+:host(ak-stage-user-login) .pf-c-button.pf-m-secondary,
+:host(ak-stage-identification) .pf-c-button.pf-m-secondary {
+    background: rgba(var(--rgb-color-red), 0.15) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    border: 1.5px solid rgba(var(--rgb-color-red), 0.3) !important;
+    box-shadow: 0 4px 15px rgba(var(--rgb-color-red), 0.1), 0 2px 8px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+:host(ak-stage-user-login) .pf-c-button.pf-m-secondary::before,
+:host(ak-stage-identification) .pf-c-button.pf-m-secondary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.15) 50%, transparent 100%);
+    transition: left 0.6s ease;
+    z-index: 1;
+    border-radius: 14px;
+}
+
+:host(ak-stage-user-login) .pf-c-button.pf-m-secondary:hover::before,
+:host(ak-stage-identification) .pf-c-button.pf-m-secondary:hover::before {
+    left: 100%;
+}
+
+:host(ak-stage-user-login) .pf-c-button.pf-m-secondary:hover,
+:host(ak-stage-identification) .pf-c-button.pf-m-secondary:hover {
+    background: rgba(var(--rgb-color-red), 0.25) !important;
+    border-color: rgba(var(--rgb-color-red), 0.45) !important;
+    color: white !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 8px 25px rgba(var(--rgb-color-red), 0.2), 0 4px 12px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+}
+
+/* SOCIAL LOGIN BUTTONS — ArtLab */
+:host(ak-stage-identification) .source-button {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+    border-radius: 12px !important;
+    padding: 10px 20px !important;
+    transition: all 0.3s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-decoration: none !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+    position: relative !important;
+    font-weight: 600 !important;
+    font-size: 15px !important;
+    gap: 8px !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    overflow: hidden !important;
+}
+
+:host(ak-stage-identification) .source-button:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    transform: translateY(-2px) scale(1.02) !important;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+:host(ak-stage-identification) button[name*="discord"].source-button {
+    background: rgba(var(--rgb-color-purple), 0.25) !important;
+    border-color: rgba(var(--rgb-color-purple), 0.4) !important;
+    box-shadow: 0 4px 12px rgba(var(--rgb-color-purple), 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+:host(ak-stage-identification) button[name*="discord"].source-button:hover {
+    background: rgba(var(--rgb-color-purple), 0.35) !important;
+    border-color: rgba(var(--rgb-color-purple), 0.6) !important;
+    box-shadow: 0 8px 20px rgba(var(--rgb-color-purple), 0.35), 0 0 0 2px rgba(var(--rgb-color-purple), 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+}
+
+:host(ak-stage-identification) .source-button:hover::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -70%;
+    width: 55%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.5) 60%, transparent 100%);
+    transform: skewX(-25deg);
+    animation: socialShine 0.65s linear 1;
+    pointer-events: none;
+}
+
+@keyframes socialShine {
+    100% { left: 130%; }
+}
+
+:host(ak-stage-identification) .source-button img,
+:host(ak-stage-identification) .source-button span.pf-c-button__icon {
+    width: 18px !important;
+    height: 18px !important;
+    flex-shrink: 0;
+}
+
+:host(ak-stage-identification) button[name*="discord"].source-button img {
+    filter: brightness(0) invert(1);
+}
+
+:host(ak-stage-identification) button[name*="google"].source-button {
+    background: rgba(var(--rgb-color-blue), 0.25) !important;
+    border-color: rgba(var(--rgb-color-blue), 0.4) !important;
+}
+
+:host(ak-stage-identification) button[name*="google"].source-button:hover {
+    background: rgba(var(--rgb-color-blue), 0.35) !important;
+    border-color: rgba(var(--rgb-color-blue), 0.6) !important;
+    box-shadow: 0 8px 20px rgba(var(--rgb-color-blue), 0.35), 0 0 0 2px rgba(var(--rgb-color-blue), 0.2) !important;
+}
+
+:host(ak-stage-user-login) .pf-c-button.pf-m-primary::after,
+:host(ak-stage-user-login) .pf-c-button.pf-m-secondary::after {
+    border: none !important;
+    display: none !important;
+}
+
+:host(ak-stage-user-login) .pf-c-button:focus,
+:host(ak-stage-user-login) .pf-c-button:active {
+    outline: none !important;
+}
+
+@media (max-width: 768px) {
+    .pf-c-login .pf-c-form__actions,
+    body:has(.pf-c-login) .pf-c-form__actions {
+        flex-direction: column !important;
+        gap: 12px !important;
+    }
+    :host(ak-stage-user-login) .pf-c-button.pf-m-primary,
+    :host(ak-stage-user-login) .pf-c-button.pf-m-secondary {
+        width: 100% !important;
+        min-width: auto !important;
+        padding: 14px 28px !important;
+    }
+}
+
+/* ===== RADIO & CHECKBOX (REMEMBER ME) — ArtLab accent ===== */
+.pf-c-login .pf-c-check,
+.pf-c-login .pf-c-switch,
+body:has(.pf-c-login) .pf-c-check,
+body:has(.pf-c-login) .pf-c-switch {
+    margin: 20px 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+}
+
+.pf-c-login .pf-c-check__input,
+.pf-c-login .pf-c-switch__input,
+.pf-c-login input[type="checkbox"],
+body:has(.pf-c-login) .pf-c-check__input,
+body:has(.pf-c-login) .pf-c-switch__input,
+body:has(.pf-c-login) input[type="checkbox"],
+input[id*="authentik-remember-me"],
+input[name*="remember"] {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    width: 16px !important;
+    height: 16px !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 5px !important;
+    margin-right: 8px !important;
+    position: relative !important;
+    vertical-align: middle !important;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    cursor: pointer !important;
+}
+
+.pf-c-login .pf-c-check__input:checked,
+.pf-c-login .pf-c-switch__input:checked,
+.pf-c-login input[type="checkbox"]:checked,
+body:has(.pf-c-login) .pf-c-check__input:checked,
+body:has(.pf-c-login) .pf-c-switch__input:checked,
+body:has(.pf-c-login) input[type="checkbox"]:checked,
+input[id*="authentik-remember-me"]:checked,
+input[name*="remember"]:checked {
+    background: rgba(var(--rgb-color-primary), 0.7) !important;
+    border-color: rgba(var(--rgb-color-primary), 0.8) !important;
+    box-shadow: 0 0 0 2px rgba(var(--rgb-color-primary), 0.2), 0 6px 20px rgba(var(--rgb-color-primary), 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+.pf-c-login .pf-c-check__input:checked::after,
+.pf-c-login .pf-c-switch__input:checked::after,
+.pf-c-login input[type="checkbox"]:checked::after,
+body:has(.pf-c-login) .pf-c-check__input:checked::after,
+body:has(.pf-c-login) .pf-c-switch__input:checked::after,
+body:has(.pf-c-login) input[type="checkbox"]:checked::after,
+input[id*="authentik-remember-me"]:checked::after,
+input[name*="remember"]:checked::after {
+    content: '✓' !important;
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    color: white !important;
+    font-size: 10px !important;
+    font-weight: bold !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+}
+
+.pf-c-login .pf-c-check__label,
+.pf-c-login .pf-c-switch__label {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-weight: 400 !important;
+    font-size: 14px !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* ===== HIDE 'Powered by authentik' ===== */
+span:contains("Propulsé par"),
+span:contains("Powered by") {
+    display: none !important;
+    visibility: hidden !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
+}
+.pf-c-login__footer .pf-c-list.pf-m-inline,
+ul.pf-c-list.pf-m-inline li span:contains("authentik") {
+    display: none !important;
+    visibility: hidden !important;
+}
+ak-brand-links,
+.pf-c-login__footer .pf-c-login__footer .pf-c-list li:last-child,
+*[data-ouia-component-type="PF4/Footer"],
+ul.pf-c-list.pf-m-inline,
+.pf-c-list.pf-m-inline {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* ===== LOGIN PAGE MODERN DESIGN — ArtLab glass ===== */
+.pf-c-login .pf-c-page,
+body:has(.pf-c-login) .pf-c-page {
+    position: relative !important;
+    min-height: 100vh !important;
+    min-height: 100dvh !important;
+    z-index: 0 !important;
+}
+
+.pf-c-login .pf-c-page::before,
+body:has(.pf-c-login) .pf-c-page::before,
+body::before {
+    content: "" !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background-image: var(--ak-flow-background) !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    z-index: -1 !important;
+    pointer-events: none !important;
+}
+
+.pf-c-login,
+body:has(.pf-c-login) {
+    position: relative !important;
+    min-height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    overflow-y: auto !important;
+    padding: 20px !important;
+    font-family: var(--font-family) !important;
+}
+
+.pf-c-login .pf-c-login__container,
+ak-flow-executor.pf-c-login {
+    background: var(--artlab-glass-bg), url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E") !important;
+    backdrop-filter: blur(var(--artlab-glass-blur)) !important;
+    -webkit-backdrop-filter: blur(var(--artlab-glass-blur)) !important;
+    border: 1px solid var(--artlab-glass-border) !important;
+    border-radius: 24px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    padding: 40px !important;
+    min-width: 450px !important;
+    width: 100% !important;
+    max-width: 700px !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
+    margin: auto !important;
+    height: auto !important;
+    flex-grow: 0 !important;
+    flex-shrink: 0 !important;
+    flex-basis: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-self: center !important;
+    justify-self: center !important;
+}
+
+/* SHADOW DOM LAYOUT FIXES (v2025.12+) */
+.pf-c-login::before,
+.pf-c-login::after,
+ak-flow-executor.pf-c-login::before,
+ak-flow-executor.pf-c-login::after,
+body:has(.pf-c-login) .pf-c-login::before,
+body:has(.pf-c-login) .pf-c-login::after {
+    display: none !important;
+    content: none !important;
+    height: 0 !important;
+}
+
+ak-flow-executor.pf-c-login {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    min-height: 100vh !important;
+    margin: 0 !important;
+    display: grid !important;
+    align-content: center !important;
+    justify-items: center !important;
+    grid-template-rows: auto !important;
+    gap: 20px !important;
+}
+
+body:has(.pf-c-login) {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow-y: auto !important;
+    min-height: 100vh !important;
+}
+
+.pf-c-login .pf-c-login__main,
+ak-flow-executor::part(main) {
+    box-sizing: border-box;
+    background: transparent !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 66px !important;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 16px, rgba(255, 255, 255, 0.05) 0px 1px 0px inset !important;
+    padding: 45px !important;
+    position: relative !important;
+    z-index: 10 !important;
+    height: fit-content !important;
+    min-height: 0 !important;
+    flex-grow: 0 !important;
+    overflow-y: visible !important;
+    min-width: auto !important;
+    max-height: none !important;
+    width: 100% !important;
+    max-width: 570px !important;
+    margin: auto !important;
+}
+
+.pf-c-login__main-header.pf-c-brand img.branding-logo,
+.pf-c-brand img.branding-logo,
+img.branding-logo {
+    height: 140px !important;
+    width: auto !important;
+    max-height: 140px !important;
+}
+
+.pf-c-login__main-header.pf-c-brand,
+.pf-c-brand {
+    padding-top: 34px !important;
+    padding-bottom: 14px !important;
+}
+
+.pf-c-login__main-footer-links:empty,
+ak-brand-links:empty {
+    display: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.pf-c-login .pf-c-login__main:has(ak-stage-authenticator-totp),
+body:has(.pf-c-login) .pf-c-login__main:has(ak-stage-authenticator-totp) {
+    max-height: 90vh !important;
+    max-width: 600px !important;
+    width: auto !important;
+    padding-top: 30px !important;
+    padding-bottom: 30px !important;
+}
+
+ak-loading-overlay {
+    border-radius: 66px !important;
+    overflow: hidden !important;
+    background: rgba(var(--rgb-color-primary), 0.04) !important;
+    backdrop-filter: blur(2px);
+}
+
+:host(ak-flow-executor) .pf-c-title,
+:host(ak-flow-executor) h1,
+:host(ak-flow-executor) h2,
+:host(ak-flow-executor) h3,
+:host(ak-flow-executor) p,
+:host(ak-flow-executor) span,
+:host(ak-flow-executor) div,
+:host(ak-flow-executor) label,
+:host(ak-flow-executor) .pf-c-form__label,
+:host(ak-stage-identification) label,
+:host(ak-stage-password) label,
+:host(ak-stage-identification) .pf-c-title,
+:host(ak-stage-password) .pf-c-title,
+:host(ak-stage-consent) .pf-c-title,
+:host(ak-stage-authenticator-validate) .pf-c-title,
+:host(ak-stage-authenticator-validate) label,
+:host(ak-stage-authenticator-validate-code) .pf-c-title,
+:host(ak-stage-authenticator-validate-code) label,
+:host(ak-stage-authenticator-validate-duo) .pf-c-title,
+:host(ak-stage-authenticator-validate-duo) label,
+:host(ak-user-settings) .pf-c-title,
+:host(ak-user-settings) label,
+:host(ak-user-settings) .pf-c-card__title,
+:host(ak-user-settings-flow-executor) .pf-c-card__title,
+:host(ak-user-settings-password) .pf-c-card__title,
+:host(ak-form-element-horizontal) label,
+:host(ak-form-element-horizontal) .pf-c-form__label,
+:host(ak-user-stage-prompt) label,
+:host(ak-user-stage-prompt) .pf-c-title,
+:host(ak-stage-prompt) label,
+:host(ak-stage-prompt) .pf-c-title {
+    color: white !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+}
+
+.pf-c-login a {
+    color: var(--color-primary) !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease !important;
+}
+
+.pf-c-login a:hover {
+    color: var(--color-primary-hover) !important;
+    text-shadow: 0 0 8px rgba(var(--rgb-color-primary), 0.6) !important;
+    text-decoration: underline !important;
+}
+
+:host(ak-stage-identification) .pf-c-form-control,
+:host(ak-stage-password) .pf-c-form-control,
+:host(ak-flow-executor) .pf-c-form-control,
+:host(ak-stage-identification) input:not([type="checkbox"]),
+:host(ak-stage-password) input:not([type="checkbox"]),
+:host(ak-stage-authenticator-validate) .pf-c-form-control,
+:host(ak-stage-authenticator-validate) input:not([type="checkbox"]),
+:host(ak-stage-authenticator-validate-code) .pf-c-form-control,
+:host(ak-stage-authenticator-validate-code) input:not([type="checkbox"]),
+:host(ak-stage-authenticator-totp) .pf-c-form-control,
+:host(ak-stage-authenticator-totp) input:not([type="checkbox"]),
+:host(ak-user-settings) .pf-c-form-control,
+:host(ak-user-settings-flow-executor) .pf-c-form-control,
+:host(ak-user-settings-password) .pf-c-form-control,
+:host(ak-form-element-horizontal) .pf-c-form-control,
+:host(ak-form-element-horizontal) input,
+:host(ak-form-element-horizontal) select,
+:host(ak-user-stage-prompt) .pf-c-form-control,
+:host(ak-user-stage-prompt) input,
+:host(ak-user-stage-prompt) select,
+:host(ak-stage-prompt) .pf-c-form-control,
+:host(ak-stage-prompt) input,
+:host(ak-stage-prompt) select {
+    background-color: rgba(255, 255, 255, 0.06) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 14px !important;
+    padding: 10px 15px !important;
+    font-size: 16px !important;
+    color: white !important;
+    height: auto !important;
+    min-height: 40px !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    backdrop-filter: blur(20px) saturate(130%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(130%) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+    font-family: var(--font-family) !important;
+}
+
+:host(ak-form-element-horizontal) select,
+:host(ak-user-stage-prompt) select,
+:host(ak-stage-prompt) select {
+    color: white !important;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+:host(ak-form-element-horizontal) select option,
+:host(ak-user-stage-prompt) select option,
+:host(ak-stage-prompt) select option {
+    background-color: var(--color-bg-card) !important;
+    color: var(--color-text-heading) !important;
+    text-shadow: none !important;
+}
+
+:host(ak-stage-identification) .pf-c-form-control:focus,
+:host(ak-stage-password) .pf-c-form-control:focus,
+:host(ak-flow-executor) .pf-c-form-control:focus,
+:host(ak-stage-identification) input:not([type="checkbox"]):focus,
+:host(ak-stage-password) input:not([type="checkbox"]):focus,
+:host(ak-stage-authenticator-validate) .pf-c-form-control:focus,
+:host(ak-stage-authenticator-validate) input:not([type="checkbox"]):focus,
+:host(ak-stage-authenticator-validate-code) .pf-c-form-control:focus,
+:host(ak-stage-authenticator-validate-code) input:not([type="checkbox"]):focus,
+:host(ak-user-settings) .pf-c-form-control:focus,
+:host(ak-user-settings-flow-executor) .pf-c-form-control:focus,
+:host(ak-user-settings-password) .pf-c-form-control:focus,
+:host(ak-form-element-horizontal) .pf-c-form-control:focus,
+:host(ak-form-element-horizontal) input:focus,
+:host(ak-form-element-horizontal) select:focus,
+:host(ak-user-stage-prompt) .pf-c-form-control:focus,
+:host(ak-user-stage-prompt) input:focus,
+:host(ak-user-stage-prompt) select:focus,
+:host(ak-stage-prompt) .pf-c-form-control:focus,
+:host(ak-stage-prompt) input:focus,
+:host(ak-stage-prompt) select:focus {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(var(--rgb-color-primary), 0.5) !important;
+    border-width: 1.5px !important;
+    outline: none !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), 0 0 0 3px rgba(var(--rgb-color-primary), 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+
+/* LANGUAGE / LOCALE SELECTOR — ArtLab */
+:host(ak-locale-select) {
+    left: 48px !important;
+    top: 60px !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: auto !important;
+    z-index: 100 !important;
+}
+
+:host(ak-locale-select) label[part="label"] {
+    color: #ffffff !important;
+    z-index: 2 !important;
+    pointer-events: none !important;
+}
+
+:host(ak-locale-select) select[part="select"],
+:host(ak-locale-select) select {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    color: #ffffff !important;
+    cursor: pointer !important;
+    padding: 4px 8px 4px 30px !important;
+    font-size: 14px !important;
+    gap: 8px !important;
+    font-family: var(--font-family) !important;
+}
+
+:host(ak-locale-select) select[part="select"],
+:host(ak-locale-select) select[part="select"]::picker(select) {
+    appearance: base-select !important;
+}
+
+:host(ak-locale-select) select[part="select"]::picker-icon {
+    color: #ffffff !important;
+    opacity: 0.8 !important;
+}
+
+:host(ak-locale-select) select[part="select"]::picker(select) {
+    background: rgba(18, 20, 26, 0.55) !important;
+    -webkit-backdrop-filter: blur(22px) saturate(140%) !important;
+    backdrop-filter: blur(22px) saturate(140%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 10px 34px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+    padding: 6px !important;
+    margin-top: 6px !important;
+    width: max-content !important;
+    min-width: 220px !important;
+    box-sizing: border-box !important;
+}
+
+:host(ak-locale-select) select[part="select"] option {
+    background: transparent !important;
+    color: #ffffff !important;
+    border-radius: 10px !important;
+    padding: 8px 12px !important;
+    font-size: 14px !important;
+    text-shadow: none !important;
+    white-space: nowrap !important;
+    box-sizing: border-box !important;
+}
+
+:host(ak-locale-select) select[part="select"] option:hover {
+    background: rgba(var(--rgb-color-primary), 0.14) !important;
+}
+
+:host(ak-locale-select) select[part="select"] option:checked {
+    background: transparent !important;
+}
+
+:host(ak-locale-select) select[part="select"] option::checkmark {
+    color: var(--color-primary) !important;
+}
+
+[supports](supports) not (appearance: base-select) {
+    :host(ak-locale-select) select option {
+        background-color: var(--color-bg-card) !important;
+        color: var(--color-text-heading) !important;
+    }
+    :host(ak-locale-select) select option:checked {
+        background-color: var(--color-bg-input) !important;
+    }
+}
+
+/* Primary Button Login — ArtLab */
+:host(ak-stage-identification) .pf-c-button.pf-m-primary,
+:host(ak-stage-password) .pf-c-button.pf-m-primary,
+:host(ak-stage-consent) .pf-c-button.pf-m-primary,
+:host(ak-stage-identification) button.pf-m-primary,
+:host(ak-stage-password) button.pf-m-primary,
+:host(ak-stage-authenticator-validate) .pf-c-button.pf-m-primary,
+:host(ak-stage-authenticator-validate-code) .pf-c-button.pf-m-primary,
+:host(ak-stage-authenticator-totp) .pf-c-button.pf-m-primary,
+:host(ak-stage-authenticator-validate-duo) .pf-c-button.pf-m-primary,
+:host(ak-stage-authenticator-validate-webauthn) .pf-c-button.pf-m-primary,
+:host(ak-user-settings) .pf-c-button.pf-m-primary,
+:host(ak-user-settings-flow-executor) .pf-c-button.pf-m-primary,
+:host(ak-user-settings-password) .pf-c-button.pf-m-primary,
+:host(ak-user-stage-prompt) .pf-c-button.pf-m-primary,
+:host(ak-form-element-horizontal) .pf-c-button.pf-m-primary,
+:host(ak-stage-authenticator-static) .pf-c-button.pf-m-primary,
+:host(ak-stage-prompt) .pf-c-button.pf-m-primary,
+:host(ak-user-settings-source-oauth) .pf-c-button.pf-m-primary {
+    background: rgba(255, 255, 255, 0.15) !important;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 14px !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    transition: all 0.3s ease !important;
+    text-transform: none !important;
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+    font-family: var(--font-family) !important;
+}
+
+:host(ak-user-settings-source-oauth) .pf-c-button.pf-m-danger {
+    background: rgba(var(--rgb-color-red), 0.25) !important;
+    color: white !important;
+    border: 1px solid rgba(var(--rgb-color-red), 0.3) !important;
+    border-radius: 14px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    transition: all 0.3s ease !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    text-transform: none !important;
+    font-family: var(--font-family) !important;
+}
+
+:host(ak-user-settings-source-oauth) .pf-c-button.pf-m-danger:hover {
+    background: rgba(var(--rgb-color-red), 0.4) !important;
+    border-color: rgba(var(--rgb-color-red), 0.6) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25) !important;
+    color: white !important;
+}
+
+:host(ak-stage-identification) .pf-c-button.pf-m-secondary,
+:host(ak-stage-password) .pf-c-button.pf-m-secondary,
+:host(ak-stage-authenticator-validate) .pf-c-button.pf-m-secondary,
+:host(ak-stage-authenticator-validate-code) .pf-c-button.pf-m-secondary,
+:host(ak-stage-authenticator-webauthn) .pf-c-button.pf-m-secondary,
+:host(ak-flow-executor) .pf-c-button.pf-m-secondary {
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 14px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    transition: all 0.3s ease !important;
+    font-weight: 500 !important;
+    margin-top: 10px !important;
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+    font-family: var(--font-family) !important;
+}
+
+:host(ak-stage-identification) .pf-c-button.pf-m-secondary:hover,
+:host(ak-stage-password) .pf-c-button.pf-m-secondary:hover,
+:host(ak-stage-authenticator-validate) .pf-c-button.pf-m-secondary:hover,
+:host(ak-stage-authenticator-validate-code) .pf-c-button.pf-m-secondary:hover,
+:host(ak-stage-authenticator-webauthn) .pf-c-button.pf-m-secondary:hover,
+:host(ak-flow-executor) .pf-c-button.pf-m-secondary:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2) !important;
+    color: white !important;
+}
+
+:host(ak-stage-identification) .pf-c-button.pf-m-secondary::before,
+:host(ak-stage-password) .pf-c-button.pf-m-secondary::before,
+:host(ak-stage-authenticator-validate) .pf-c-button.pf-m-secondary::before,
+:host(ak-flow-executor) .pf-c-button.pf-m-secondary::before {
+    content: "" !important;
+    display: inline-block !important;
+    width: 16px !important;
+    height: 16px !important;
+    margin-right: 8px !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' fill='white'%3E%3Cpath d='M336 352c97.2 0 176-78.8 176-176S433.2 0 336 0S160 78.8 160 176c0 18.7 2.9 36.6 8.3 53.7L7 391c-4.5 4.5-7 10.6-7 17v80c0 13.3 10.7 24 24 24h80c13.3 0 24-10.7 24-24V448h40c13.3 0 24-10.7 24-24V384h40c6.4 0 12.5-2.5 17-7l33.3-33.3c16.9 5.2 38.6 352zM336 96a80 80 0 1 1 0 160 80 80 0 1 1 0-160z'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: contain !important;
+    border: none !important;
+    background-color: transparent !important;
+    position: static !important;
+    transform: none !important;
+}
+
+:host(ak-stage-identification) .pf-c-button.pf-m-primary:hover,
+:host(ak-stage-password) .pf-c-button.pf-m-primary:hover,
+:host(ak-stage-identification) button.pf-m-primary:hover,
+:host(ak-stage-password) button.pf-m-primary:hover,
+:host(ak-stage-authenticator-validate) .pf-c-button.pf-m-primary:hover,
+:host(ak-stage-authenticator-validate-code) .pf-c-button.pf-m-primary:hover,
+:host(ak-stage-authenticator-validate-duo) .pf-c-button.pf-m-primary:hover,
+:host(ak-stage-authenticator-validate-webauthn) .pf-c-button.pf-m-primary:hover,
+:host(ak-user-settings) .pf-c-button.pf-m-primary:hover,
+:host(ak-user-settings-flow-executor) .pf-c-button.pf-m-primary:hover,
+:host(ak-user-settings-password) .pf-c-button.pf-m-primary:hover,
+:host(ak-user-stage-prompt) .pf-c-button.pf-m-primary:hover,
+:host(ak-form-element-horizontal) .pf-c-button.pf-m-primary:hover,
+:host(ak-stage-authenticator-static) .pf-c-button.pf-m-primary:hover,
+:host(ak-stage-prompt) .pf-c-button.pf-m-primary:hover,
+:host(ak-user-settings-source-oauth) .pf-c-button.pf-m-primary:hover {
+    background: rgba(255, 255, 255, 0.25) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), 0 4px 12px rgba(255, 255, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+}
+
+:host(ak-stage-identification) .pf-c-button::after,
+:host(ak-stage-password) .pf-c-button::after,
+:host(ak-stage-consent) .pf-c-button::after {
+    display: none !important;
+    content: none !important;
+}
+
+.pf-c-login__main-footer-band {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin-top: 10px !important;
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.pf-c-login__main-footer-band a {
+    color: rgba(255, 255, 255, 0.6) !important;
+    text-decoration: none !important;
+    font-size: 14px !important;
+    transition: all 0.2s ease !important;
+}
+
+.pf-c-login__main-footer-band a:hover {
+    color: var(--color-primary) !important;
+    text-decoration: underline !important;
+    text-shadow: 0 0 5px rgba(var(--rgb-color-primary), 0.5) !important;
+}
+
+/* ===== UI GLOBAL (SCROLLBAR) — ArtLab ===== */
+:root {
+    --sb-size: 10px;
+    --sb-radius: 12px;
+    --sb-track: rgba(var(--rgb-color-primary), 0.06);
+    --sb-thumb: rgba(var(--rgb-color-primary), 0.28);
+    --sb-thumb-hover: rgba(var(--rgb-color-primary), 0.42);
+    --sb-thumb-active: rgba(var(--rgb-color-primary), 0.55);
+}
+
+*::-webkit-scrollbar {
+    width: var(--sb-size);
+    height: var(--sb-size);
+}
+
+*::-webkit-scrollbar-track {
+    background: var(--sb-track);
+    border-radius: var(--sb-radius);
+    margin: 4px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: var(--sb-thumb);
+    border-radius: var(--sb-radius);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+/* ===== APPS & DASHBOARD — ArtLab glass ===== */
+.pf-c-card.pf-m-compact,
+.pf-c-expandable-section.pf-m-display-lg,
+:host(ak-user-settings) .pf-c-card,
+:host(ak-user-settings-flow-executor) .pf-c-card,
+:host(ak-user-settings-password) .pf-c-card,
+:host(ak-user-settings-mfa) .pf-c-card,
+:host(ak-user-settings-source) .pf-c-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px !important;
+    background: var(--artlab-card-glass) !important;
+    backdrop-filter: blur(20px) saturate(130%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(130%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+}
+
+.pf-c-card.pf-m-compact:hover,
+:host(ak-user-settings) .pf-c-card:hover,
+:host(ak-user-settings-flow-executor) .pf-c-card:hover,
+:host(ak-user-settings-password) .pf-c-card:hover {
+    transform: translateY(-3px) scale(1.01) !important;
+    box-shadow: 0 8px 32px rgba(var(--rgb-color-primary), 0.25), 0 4px 12px rgba(var(--rgb-color-purple), 0.2) !important;
+    border-color: rgba(var(--rgb-color-primary), 0.4) !important;
+}
+
+:host(ak-user-settings) .pf-c-tabs,
+:host(ak-user-settings) .pf-c-tabs__list {
+    background: transparent !important;
+    border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+:host(ak-user-settings) .pf-c-tabs__button {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+:host(ak-user-settings) .pf-c-tabs__link.pf-m-current,
+:host(ak-user-settings) .pf-c-tabs__item.pf-m-current .pf-c-tabs__button {
+    color: white !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 10px 10px 0 0 !important;
+}
+
+:host(ak-user-settings) .pf-c-tabs__item.pf-m-current::after {
+    border-bottom-color: var(--color-primary) !important;
+    border-bottom-width: 3px !important;
+}
+
+.pf-c-page__sidebar {
+    background: rgba(18, 18, 18, 0.4) !important;
+    backdrop-filter: blur(20px) saturate(120%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(120%) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.pf-c-page__header,
+.pf-c-page__header-tools {
+    background: transparent !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+}
+
+.pf-c-page>.pf-c-page__header {
+    background: rgba(0, 0, 0, 0.4) !important;
+    backdrop-filter: blur(18px) !important;
+    -webkit-backdrop-filter: blur(18px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.pf-c-page {
+    position: relative !important;
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+:host(ak-library-impl) .pf-c-page,
+:host(ak-library-impl) .pf-c-page__main,
+.pf-c-page__main,
+.pf-c-page__main-section,
+.pf-c-page__drawer,
+.pf-c-drawer__content,
+.pf-c-drawer__main,
+:host(ak-library-impl) .pf-l-gallery {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+.pf-c-page {
+    background-image: var(--ak-flow-background) !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
+}
+
+:host(ak-interface-admin) .pf-c-page {
+    background-image: none !important;
+    background-color: var(--pf-global--BackgroundColor--100) !important;
+}
+
+:host(ak-library-impl),
+:host(ak-interface-user) {
+    --pf-global--BackgroundColor--100: transparent !important;
+    --pf-c-page--BackgroundColor: transparent !important;
+    --pf-c-page__main-section--BackgroundColor: transparent !important;
+}
+
+:host(ak-library-impl) .pf-c-page,
+:host(ak-library-impl) .pf-c-page__main,
+:host(ak-library-impl) .pf-c-page__main-section,
+:host(ak-library-impl) .pf-c-drawer__content,
+:host(ak-library-impl) .pf-c-drawer__main,
+:host(ak-interface-user) .pf-c-page,
+:host(ak-interface-user) .pf-c-page__main {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+[part="background-wrapper"],
+[part="background-default-slant"],
+::part(background-wrapper),
+::part(background-default-slant) {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+.pf-c-input-group {
+    position: relative !important;
+    display: flex !important;
+    width: 100% !important;
+}
+
+.pf-c-button.pf-m-control {
+    position: absolute !important;
+    top: 50% !important;
+    right: 5px !important;
+    transform: translateY(-50%) !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    z-index: 9999 !important;
+    padding: 5px !important;
+    margin: 0 !important;
+    height: auto !important;
+    min-width: 0 !important;
+    width: 30px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+}
+
+.pf-c-button.pf-m-control:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 50% !important;
+}
+
+.pf-c-button.pf-m-control::after,
+.pf-c-button.pf-m-control::before {
+    display: none !important;
+    content: none !important;
+}
+
+.pf-c-form-control {
+    padding-right: 40px !important;
+}
+
+[data-ak-interface-root="ak-interface-admin"] .pf-c-button.pf-m-plain,
+[data-ak-interface-root="ak-interface-admin"] .pf-c-button.pf-m-secondary,
+[data-ak-interface-root="ak-interface-admin"] .pf-c-button.pf-m-primary {
+    width: auto !important;
+    min-width: 0 !important;
+    height: auto !important;
+    transform: none !important;
+    background: var(--pf-c-button--m-plain--BackgroundColor, transparent) !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: var(--pf-c-button--m-plain--Color, inherit) !important;
+}
+
+[data-ak-interface-root="ak-interface-admin"] .pf-c-select__toggle,
+[data-ak-interface-root="ak-interface-admin"] .pf-c-form-control {
+    height: auto !important;
+    min-height: 0 !important;
+    padding: initial !important;
+    background: var(--pf-c-form-control--BackgroundColor, #fff) !important;
+    border: 1px solid var(--pf-c-form-control--BorderColor, #ccc) !important;
+    border-radius: var(--pf-c-form-control--BorderRadius, 3px) !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    color: var(--pf-c-form-control--Color, initial) !important;
+}
+
+:host(ak-interface-user) a[href*="/if/admin/"],
+:host(ak-interface-user-presentation) a[href*="/if/admin/"],
+:host(ak-interface-user) .pf-c-page__header-tools-item a.pf-c-button.pf-m-secondary,
+:host(ak-interface-user-presentation) .pf-c-page__header-tools-item a.pf-c-button.pf-m-secondary {
+    border-radius: var(--radius-pill) !important;
+    border: none !important;
+    background: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    color: white !important;
+    padding: 8px 24px !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    text-transform: none !important;
+    font-weight: 500 !important;
+    font-family: var(--font-family) !important;
+}
+
+:host(ak-stage-identification) .pf-c-button.pf-m-primary {
+    background: rgba(var(--rgb-color-green), 0.25) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border: 1.5px solid rgba(var(--rgb-color-green), 0.4) !important;
+    color: white !important;
+    font-weight: 600 !important;
+    padding: 10px 24px !important;
+    border-radius: 14px !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    box-shadow: 0 4px 15px rgba(var(--rgb-color-green), 0.15), 0 2px 8px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    margin-top: 4px !important;
+    margin-bottom: 4px !important;
+}
+
+:host(ak-interface-user) a[href*="/if/admin/"]:hover,
+:host(ak-interface-user-presentation) a[href*="/if/admin/"]:hover,
+:host(ak-interface-user) .pf-c-page__header-tools-item a.pf-c-button.pf-m-secondary:hover,
+:host(ak-interface-user-presentation) .pf-c-page__header-tools-item a.pf-c-button.pf-m-secondary:hover {
+    background: rgba(255, 255, 255, 0.25) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+    text-decoration: none !important;
+}
+
+:host(ak-interface-user) a[href*="/if/admin/"]::after,
+:host(ak-interface-user-presentation) a[href*="/if/admin/"]::after,
+:host(ak-interface-user) .pf-c-page__header-tools-item a.pf-c-button.pf-m-secondary::after,
+:host(ak-interface-user-presentation) .pf-c-page__header-tools-item a.pf-c-button.pf-m-secondary::after {
+    border: none !important;
+    display: none !important;
+    content: none !important;
+}
+
+:host(ak-interface-user) a[href*="/if/admin/"]:focus,
+:host(ak-interface-user-presentation) a[href*="/if/admin/"]:focus,
+:host(ak-interface-user) .pf-c-page__header-tools-item a.pf-c-button.pf-m-secondary:focus,
+:host(ak-interface-user-presentation) .pf-c-page__header-tools-item a.pf-c-button.pf-m-secondary:focus {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+}
+
+:host(ak-library-impl) .pf-c-card.pf-m-hoverable {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(10px) !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    border-radius: 20px !important;
+}
+
+:host(ak-library-impl) .pf-c-card.pf-m-hoverable:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+    transform: translateY(-4px) !important;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+    border-color: rgba(var(--rgb-color-primary), 0.25) !important;
+}
+
+:host(ak-library-impl) .pf-c-card.pf-m-hoverable::after,
+:host(ak-library-impl) .pf-c-card.pf-m-hoverable::before,
+:host(ak-library-impl) .pf-c-card.pf-m-hoverable:hover::after,
+:host(ak-library-impl) .pf-c-card.pf-m-hoverable:hover::before {
+    display: none !important;
+    border: none !important;
+    content: none !important;
+    box-shadow: none !important;
+}
+
+:host(ak-library-impl) .pf-c-card__title,
+:host(ak-library-impl) .pf-c-card__body {
+    color: white !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+}
+
+:host(ak-library-impl) input[type="text"],
+:host(ak-library-impl) input[type="search"],
+:host(ak-library-impl) .pf-c-form-control {
+    border-bottom-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+:host(ak-library-impl) input[type="text"]:hover,
+:host(ak-library-impl) input[type="search"]:hover,
+:host(ak-library-impl) input[type="text"]:focus,
+:host(ak-library-impl) input[type="search"]:focus,
+:host(ak-library-impl) .pf-c-form-control:hover,
+:host(ak-library-impl) .pf-c-form-control:focus {
+    border-bottom-color: var(--color-primary) !important;
+    border-color: rgba(var(--rgb-color-primary), 0.5) !important;
+}
+
+:host(ak-user-settings) .pf-c-card:hover,
+:host(ak-user-settings-flow-executor) .pf-c-card:hover,
+:host(ak-user-settings-password) .pf-c-card:hover {
+    transform: none !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+:host(ak-user-settings) .pf-c-card.pf-m-hoverable::after,
+:host(ak-user-settings) .pf-c-card.pf-m-hoverable::before,
+:host(ak-user-settings) .pf-c-card:hover::after,
+:host(ak-user-settings) .pf-c-card:hover::before,
+:host(ak-user-settings-flow-executor) .pf-c-card:hover::after,
+:host(ak-user-settings-flow-executor) .pf-c-card:hover::before,
+:host(ak-user-settings-password) .pf-c-card:hover::after,
+:host(ak-user-settings-password) .pf-c-card:hover::before {
+    display: none !important;
+    content: none !important;
+    border: none !important;
+}
+
+:host(ak-user-session-list) .pf-c-table,
+:host(ak-user-settings-mfa) .pf-c-table,
+:host(ak-user-consent-list) .pf-c-table,
+:host(ak-user-reputation-list) .pf-c-table,
+:host(ak-user-token-list) .pf-c-table,
+:host(ak-user-session-list) .pf-c-table tr,
+:host(ak-user-settings-mfa) .pf-c-table tr,
+:host(ak-user-consent-list) .pf-c-table tr,
+:host(ak-user-reputation-list) .pf-c-table tr,
+:host(ak-user-token-list) .pf-c-table tr {
+    background-color: transparent !important;
+    background: transparent !important;
+    --pf-c-table--BackgroundColor: transparent !important;
+}
+
+:host(ak-user-session-list) .pf-c-table tbody>tr>*,
+:host(ak-user-settings-mfa) .pf-c-table tbody>tr>*,
+:host(ak-user-consent-list) .pf-c-table tbody>tr>*,
+:host(ak-user-reputation-list) .pf-c-table tbody>tr>*,
+:host(ak-user-token-list) .pf-c-table tbody>tr>* {
+    --pf-c-table--cell--BackgroundColor: transparent !important;
+    border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+:host(ak-user-session-list) .pf-c-card,
+:host(ak-user-settings-mfa) .pf-c-card,
+:host(ak-user-consent-list) .pf-c-card,
+:host(ak-user-reputation-list) .pf-c-card,
+:host(ak-user-token-list) .pf-c-card {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+:host(ak-user-session-list) .pf-c-toolbar,
+:host(ak-user-settings-mfa) .pf-c-toolbar,
+:host(ak-user-consent-list) .pf-c-toolbar,
+:host(ak-user-reputation-list) .pf-c-toolbar,
+:host(ak-user-token-list) .pf-c-toolbar,
+:host(ak-user-session-list) .pf-c-pagination,
+:host(ak-user-settings-mfa) .pf-c-pagination,
+:host(ak-user-consent-list) .pf-c-pagination,
+:host(ak-user-reputation-list) .pf-c-pagination,
+:host(ak-user-token-list) .pf-c-pagination {
+    background-color: transparent !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    --pf-c-toolbar--BackgroundColor: transparent !important;
+}
+
+:host(ak-user-session-list) .pf-c-toolbar .pf-c-button,
+:host(ak-user-settings-mfa) .pf-c-toolbar .pf-c-button,
+:host(ak-user-consent-list) .pf-c-toolbar .pf-c-button,
+:host(ak-user-reputation-list) .pf-c-toolbar .pf-c-button,
+:host(ak-user-token-list) .pf-c-toolbar .pf-c-button,
+:host(ak-user-session-list) ak-spinner-button .pf-c-button,
+:host(ak-user-settings-mfa) ak-spinner-button .pf-c-button,
+:host(ak-user-consent-list) ak-spinner-button .pf-c-button,
+:host(ak-user-reputation-list) ak-spinner-button .pf-c-button,
+:host(ak-user-token-list) ak-spinner-button .pf-c-button,
+:host(ak-user-session-list) ak-spinner-button::part(spinner-button),
+:host(ak-user-settings-mfa) ak-spinner-button::part(spinner-button),
+:host(ak-user-consent-list) ak-spinner-button::part(spinner-button),
+:host(ak-user-reputation-list) ak-spinner-button::part(spinner-button),
+:host(ak-user-token-list) ak-spinner-button::part(spinner-button) {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+    backdrop-filter: blur(5px);
+    border-radius: 6px !important;
+    font-family: var(--font-family) !important;
+}
+
+:host(ak-user-session-list) ak-spinner-button::part(spinner-button)::after,
+:host(ak-user-settings-mfa) ak-spinner-button::part(spinner-button)::after,
+:host(ak-user-consent-list) ak-spinner-button::part(spinner-button)::after,
+:host(ak-user-reputation-list) ak-spinner-button::part(spinner-button)::after,
+:host(ak-user-token-list) ak-spinner-button::part(spinner-button)::after {
+    border: none !important;
+    border-color: transparent !important;
+}
+
+:host(ak-user-token-list) .pf-c-button.pf-m-secondary {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+}
+
+:host(ak-user-token-list) .pf-c-button.pf-m-secondary::after {
+    border: none !important;
+    border-color: transparent !important;
+}
+
+:host(ak-user-settings-mfa) .pf-c-dropdown__toggle.pf-m-primary {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+}
+
+:host(ak-user-settings-mfa) .pf-c-dropdown__toggle.pf-m-primary:after {
+    border: none !important;
+}
+
+:host(ak-table-search) .pf-c-form-control,
+:host(ak-table-search) input[type="search"] {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+    border-radius: 6px !important;
+}
+
+:host(ak-table-search) .pf-c-form-control:hover,
+:host(ak-table-search) input[type="search"]:hover {
+    border-color: var(--ak-accent) !important;
+}
+
+:host(ak-user-consent-list) ak-chip,
+:host(ak-user-consent-list) ak-chip[theme="dark"],
+:host(ak-user-token-list) ak-chip,
+:host(ak-user-token-list) ak-chip[theme="dark"],
+:host(ak-user-settings-mfa) ak-chip,
+:host(ak-user-settings-mfa) ak-chip[theme="dark"],
+:host(ak-user-session-list) ak-chip,
+:host(ak-user-session-list) ak-chip[theme="dark"],
+:host(ak-user-reputation-list) ak-chip,
+:host(ak-user-reputation-list) ak-chip[theme="dark"],
+:host(ak-user-consent-list) .pf-c-chip,
+.pf-c-chip,
+ak-chip {
+    --pf-c-chip--BackgroundColor: var(--color-bg-card) !important;
+    --pf-c-chip__text--Color: var(--color-text-heading) !important;
+    --pf-c-chip--Color: var(--color-text-heading) !important;
+    color: var(--color-text-heading) !important;
+}
+
+:host(ak-user-consent-list) ak-chip::part(chip),
+:host(ak-user-token-list) ak-chip::part(chip),
+:host(ak-user-settings-mfa) ak-chip::part(chip),
+:host(ak-user-session-list) ak-chip::part(chip),
+:host(ak-user-reputation-list) ak-chip::part(chip) {
+    background: var(--color-bg-card) !important;
+    background-color: var(--color-bg-card) !important;
+    background-image: none !important;
+    color: var(--color-text-heading) !important;
+    border: 1px solid var(--color-border) !important;
+    border-radius: 12px !important;
+}
+
+:host(ak-user-consent-list) ak-chip::part(chip)::before,
+:host(ak-user-consent-list) ak-chip::part(chip)::after,
+:host(ak-user-token-list) ak-chip::part(chip)::before,
+:host(ak-user-token-list) ak-chip::part(chip)::after,
+:host(ak-user-settings-mfa) ak-chip::part(chip)::before,
+:host(ak-user-settings-mfa) ak-chip::part(chip)::after,
+:host(ak-user-session-list) ak-chip::part(chip)::before,
+:host(ak-user-session-list) ak-chip::part(chip)::after,
+:host(ak-user-reputation-list) ak-chip::part(chip)::before,
+:host(ak-user-reputation-list) ak-chip::part(chip)::after {
+    display: none !important;
+    content: none !important;
+}
+
+:host(ak-user-consent-list) ak-chip::part(chip):hover,
+:host(ak-user-token-list) ak-chip::part(chip):hover,
+:host(ak-user-settings-mfa) ak-chip::part(chip):hover,
+:host(ak-user-session-list) ak-chip::part(chip):hover,
+:host(ak-user-reputation-list) ak-chip::part(chip):hover {
+    background-color: var(--color-bg-hover) !important;
+}
+
+:host(ak-user-session-list) .pf-c-toolbar .pf-c-button:hover,
+:host(ak-user-settings-mfa) .pf-c-toolbar .pf-c-button:hover,
+:host(ak-user-consent-list) .pf-c-toolbar .pf-c-button:hover,
+:host(ak-user-reputation-list) .pf-c-toolbar .pf-c-button:hover,
+:host(ak-user-token-list) .pf-c-toolbar .pf-c-button:hover,
+:host(ak-user-session-list) ak-spinner-button .pf-c-button:hover,
+:host(ak-user-settings-mfa) ak-spinner-button .pf-c-button:hover,
+:host(ak-user-consent-list) ak-spinner-button .pf-c-button:hover,
+:host(ak-user-reputation-list) ak-spinner-button .pf-c-button:hover,
+:host(ak-user-token-list) ak-spinner-button .pf-c-button:hover,
+:host(ak-user-session-list) ak-spinner-button::part(spinner-button):hover,
+:host(ak-user-settings-mfa) ak-spinner-button::part(spinner-button):hover,
+:host(ak-user-consent-list) ak-spinner-button::part(spinner-button):hover,
+:host(ak-user-reputation-list) ak-spinner-button::part(spinner-button):hover,
+:host(ak-user-token-list) ak-spinner-button::part(spinner-button):hover,
+:host(ak-user-settings-mfa) .pf-c-dropdown__toggle.pf-m-primary:hover,
+:host(ak-user-token-list) .pf-c-button.pf-m-secondary:hover,
+:host(ak-user-consent-list) ak-chip:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+:host(ak-user-consent-list) ak-chip::part(chip):hover {
+    background-color: var(--color-bg-hover) !important;
+}
+
+ak-app-icon[size="pf-m-lg"] {
+    --icon-height: 3rem !important;
+}
+
+ak-app-icon::part(icon) {
+    border-radius: 15px !important;
+    overflow: hidden !important;
+}
+
+ak-app-icon::part(icon image) {
+    border-radius: 15px !important;
+}
+
+.pf-c-label.pf-m-green {
+    --pf-c-label--BackgroundColor: var(--color-bg-card) !important;
+    --pf-c-label__icon--Color: var(--color-green);
+    --pf-c-label__content--before--BorderColor: var(--color-border) !important;
+    --pf-c-label--m-outline__content--before--BorderColor: var(--color-border) !important;
+}
+
+.pf-c-label.pf-m-gray {
+    --pf-c-label--BackgroundColor: var(--color-bg-card) !important;
+    --pf-c-label__icon--Color: var(--color-red) !important;
+}
+
+.pf-c-login__main-footer-links {
+    margin-top: 0 !important;
+    position: relative !important;
+    display: flex !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+}
+
+.pf-c-login__main-footer-links::before {
+    content: var(--ak-social-separator-text) !important;
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+    font-size: 15px !important;
+    color: #ffffff !important;
+    opacity: 1 !important;
+    margin-bottom: 20px !important;
+    margin-top: 10px !important;
+    font-weight: 400 !important;
+    background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 32%, transparent 32%, transparent 68%, rgba(255, 255, 255, 1) 68%, rgba(255, 255, 255, 1) 100%) !important;
+    background-size: 100% 1px !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+}
+
+.pf-c-login__main-footer-links-item-link {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+    border-radius: 12px !important;
+    padding: 10px 20px !important;
+    transition: all 0.3s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-decoration: none !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+    font-family: var(--font-family) !important;
+}
+
+.pf-c-login__main-footer-links-item-link i,
+.pf-c-login__main-footer-links-item-link svg {
+    font-size: 24px !important;
+    width: 24px !important;
+    height: 24px !important;
+    text-align: center !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.pf-c-login__main-footer-links-item-link:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.pf-c-login__main-footer-links-item-link:active,
+.pf-c-login__main-footer-links-item-link:visited {
+    color: white !important;
+    text-decoration: none !important;
+}
+
+.pf-c-login__main-footer-links-item-link img {
+    margin-right: 8px !important;
+    max-height: 20px !important;
+}
+
+.pf-c-login__main-footer-links {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 12px !important;
+    margin-top: 10px !important;
+}
+
+.pf-c-login__main-footer-links-item {
+    display: inline-flex !important;
+    width: auto !important;
+}
+
+.pf-c-login__main-footer-links-item button {
+    background: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    color: white !important;
+    font-weight: 600 !important;
+    border-radius: 12px !important;
+    padding: 10px 16px !important;
+    font-size: 14px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    min-width: 100px !important;
+    max-width: 120px !important;
+    height: auto !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(255, 255, 255, 0.1) !important;
+    position: relative;
+    overflow: hidden;
+    margin: 0 !important;
+    flex: 0 0 auto !important;
+    font-family: var(--font-family) !important;
+}
+
+.pf-c-login__main-footer-links-item button img {
+    width: 18px !important;
+    height: 18px !important;
+    margin-right: 0 !important;
+    flex-shrink: 0;
+    display: inline-block;
+}
+
+.pf-c-login__main-footer-links-item button:has(img[src*="discord"]),
+.pf-c-login__main-footer-links-item button:has(img[src*="google"]) {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.pf-c-login__main-footer-links-item button:has(img[src*="discord"]) img {
+    filter: brightness(0) invert(1);
+}
+
+.pf-c-login__main-footer-links-item button:hover {
+    background: rgba(255, 255, 255, 0.25) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), 0 4px 12px rgba(255, 255, 255, 0.15) !important;
+    cursor: pointer;
+}
+
+.pf-c-login__main-footer-links::before {
+    content: "────────  ou  ────────";
+    display: block;
+    width: 100%;
+    color: #b8bbc2;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 10px 0 15px 0;
+    letter-spacing: 0.4px;
+    opacity: 0.8;
+}
+
+/* ===== RESPONSIVE MOBILE ===== */
+@media (max-width: 768px) {
+    .pf-c-page,
+    body,
+    .pf-c-login .pf-c-page,
+    body:has(.pf-c-login) .pf-c-page {
+        background: transparent !important;
+        background-color: transparent !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+    }
+    .pf-c-page::before,
+    body::before,
+    .pf-c-login .pf-c-page::before,
+    body:has(.pf-c-login)::before {
+        content: '' !important;
+        position: fixed !important;
+        top: -10px !important;
+        left: -10px !important;
+        right: -10px !important;
+        bottom: -10px !important;
+        width: calc(100vw + 20px) !important;
+        height: calc(100vh + 20px) !important;
+        background-image: var(--ak-flow-background) !important;
+        background-size: cover !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+        filter: blur(8px) !important;
+        -webkit-filter: blur(8px) !important;
+        z-index: -1 !important;
+    }
+    .pf-c-login {
+        width: 100vw !important;
+        max-width: 100vw !important;
+        min-width: 100vw !important;
+        height: 100vh !important;
+        min-height: 100vh !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+    }
+    body,
+    html {
+        overflow-x: hidden !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+    }
+    .pf-c-login .pf-c-login__container,
+    body .pf-c-login .pf-c-login__container,
+    body:has(.pf-c-login) .pf-c-login__container {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 100% !important;
+        box-sizing: border-box !important;
+        height: auto !important;
+        min-height: 0 !important;
+        position: relative !important;
+        margin: auto !important;
+        border-radius: 0 !important;
+        border: none !important;
+        padding: 20px !important;
+        background: transparent !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        box-shadow: none !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        z-index: 1 !important;
+        overflow-y: visible !important;
+    }
+    .pf-c-login .pf-c-login__main,
+    body .pf-c-login .pf-c-login__main,
+    body:has(.pf-c-login) .pf-c-login__main {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        border-radius: 0 !important;
+        border: none !important;
+        padding: 30px 20px !important;
+        min-height: auto !important;
+        max-height: none !important;
+        background: transparent !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        box-shadow: none !important;
+        position: relative !important;
+        z-index: 2 !important;
+        margin: auto !important;
+        margin-top: auto !important;
+        margin-bottom: auto !important;
+    }
+    .pf-c-login__footer,
+    .pf-c-login__main-footer {
+        padding-bottom: 0 !important;
+        margin-bottom: 0 !important;
+    }
+    .pf-c-login .pf-c-form__actions button:first-child,
+    .pf-c-login .pf-c-form__group-control button:first-child,
+    :host(ak-stage-identification) .pf-c-button.pf-m-primary,
+    :host(ak-stage-identification) button[type="submit"].pf-c-button.pf-m-primary {
+        width: 100% !important;
+        padding: 16px 24px !important;
+        font-size: 16px !important;
+    }
+    :host(ak-stage-identification) .pf-c-form-control,
+    :host(ak-stage-password) .pf-c-form-control,
+    :host(ak-stage-identification) input:not([type="checkbox"]),
+    :host(ak-stage-password) input:not([type="checkbox"]) {
+        padding: 14px 16px !important;
+        font-size: 16px !important;
+        min-height: 50px !important;
+    }
+    .pf-c-login__main-footer-links {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 10px !important;
+    }
+    .pf-c-login__main-footer-links-item button {
+        width: auto !important;
+        min-width: 60px !important;
+        flex: 1 1 auto !important;
+        max-width: 80px !important;
+        font-size: 15px !important;
+        padding: 10px 10px !important;
+    }
+    .pf-c-login__main-footer-links-item button img {
+        width: 18px !important;
+        height: 18px !important;
+    }
+    ak-loading-overlay {
+        border-radius: 0 !important;
+    }
+    html,
+    body,
+    :host(ak-interface-user),
+    :host(ak-library-impl),
+    .pf-c-page {
+        background-color: var(--color-bg-page) !important;
+        background-image: var(--ak-flow-background) !important;
+        background-size: cover !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+        background-attachment: scroll !important;
+        min-height: 100dvh !important;
+        position: relative !important;
+    }
+    .pf-c-login .pf-c-login__container {
+        padding: 10px 15px 20px 15px !important;
+        min-width: auto !important;
+        width: 100% !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+    .pf-c-login .pf-c-login__main {
+        padding: 25px 20px !important;
+        width: 100% !important;
+        border-radius: 20px !important;
+    }
+    :host(ak-library-impl) .pf-c-page,
+    :host(ak-library-impl) .pf-c-page__main,
+    .pf-c-page__main,
+    .pf-c-page__main-section,
+    .pf-c-page__drawer,
+    .pf-c-drawer__content,
+    .pf-c-drawer__main,
+    :host(ak-library-impl) .pf-l-gallery {
+        background: transparent !important;
+        background-color: transparent !important;
+    }
+    :host(ak-library-impl) .pf-l-gallery {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+    }
+    :host(ak-library-impl) .pf-c-card.pf-m-hoverable {
+        min-height: 120px !important;
+        padding: 10px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    :host(ak-library-impl) .pf-c-card__body img {
+        max-width: 40px !important;
+        max-height: 40px !important;
+    }
+}
