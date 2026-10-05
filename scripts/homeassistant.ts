@@ -15,32 +15,28 @@ export interface HomeAssistantThemeOptions {
   secondaryColor?: string
   /**
    * Include the card-mod CSS transition rules (smooth dark/light switching).
-   * Defaults to true. Layout rules (max-width, hidden header, dialog radius)
+   * Defaults to true. The layout rules (mobile header hiding, dialog radius)
    * are always kept.
    */
   transitions?: boolean
 }
 
 function formatValue(value: any): string {
-  if (typeof value === 'string') {
-    if (value.includes('\n'))
-      return `\n${value.split('\n').map(l => `      ${l}`).join('\n')}`
-    return `"${value}"`
-  }
   return `"${String(value)}"`
 }
 
-// Section headers emitted in the generated YAML.
-// Geometry (round, padding, margin, gaps, borders) follows Bubble Light & Dark v1.2.
+// Section headers emitted in the generated YAML, keyed by the first variable
+// of each section in the source order.
 const SECTION_HEADERS: Record<string, string> = {
   'primary-font-family': 'Fonts',
   'text-color': 'Text',
   'mdc-text-field-fill-color': 'Text Fields and Dropdown',
   'app-header-background-color': 'Main Colors',
   'background-color': 'Background',
-  'gray100': 'Grays',
+  'gray400': 'Grays',
   'pastel-blue': 'Pastel accents',
-  'blue100': 'Color variants',
+  'blue': 'Palette',
+  'blue300': 'Color variants',
   'card-background-color': 'Card - geometry from Bubble v1.2',
   'paper-item-icon-color': 'Icons',
   'room-livingroom': 'Rooms',
@@ -52,23 +48,76 @@ const SECTION_HEADERS: Record<string, string> = {
   'more-info-header-background': 'Popups',
   'table-row-background-color': 'Tables',
   'label-badge-background-color': 'Badges',
-  'ch-background': 'Custom Header',
   'mini-media-player-base-color': 'Mini Mediaplayer',
 }
 
-function modeToYaml(mode: Record<string, any>): string {
+// Numbered aliases consumed by the dashboard, all resolving to their artlab hue.
+const NUMBERED_ALIASES: Record<string, string> = {
+  blue300: 'var(--artlab-blue)',
+  blue400: 'var(--artlab-blue)',
+  blue500: 'var(--artlab-blue)',
+  green300: 'var(--artlab-green)',
+  green400: 'var(--artlab-green)',
+  green500: 'var(--artlab-green)',
+  green600: 'var(--artlab-green)',
+  orange400: 'var(--artlab-orange)',
+  orange500: 'var(--artlab-orange)',
+  red400: 'var(--artlab-red)',
+  red500: 'var(--artlab-red)',
+  red600: 'var(--artlab-red)',
+  yellow500: 'var(--artlab-yellow)',
+  purple300: 'var(--artlab-purple)',
+  purple500: 'var(--artlab-purple)',
+  pink500: 'var(--artlab-pink)',
+}
+
+// Fixed palette shared by both modes, defined at the theme common level
+// so the Home Assistant engine merges it with the dark/light modes.
+const ART_LAB_ACCENTS: Record<string, string> = {
+  'artlab-green': '#c9ddc3',
+  'artlab-purple': '#ded1eb',
+  'artlab-yellow': '#f2e5b2',
+  'artlab-red': '#efc3ba',
+  'artlab-blue': '#c8dce9',
+  'artlab-orange': '#efd1b8',
+  'artlab-pink': '#e5c6d7',
+  'artlab-lime': '#dce6ba',
+}
+
+const ART_LAB_ROOMS: Record<string, string> = {
+  'artlab-room-livingroom': '#8faf82',
+  'artlab-room-bedroom': '#b88faf',
+  'artlab-room-kitchen': '#d3b07a',
+  'artlab-room-bathroom': '#7eafc1',
+  'artlab-room-entry': '#a594bd',
+  'artlab-room-hallway': '#87b7a5',
+  'artlab-room-security': '#d19a85',
+  'artlab-room-garage': '#8fa7b8',
+  'artlab-room-garden': '#9bb77b',
+}
+
+// Maps every emitted variable to its section title, following the source order.
+function buildSections(keys: string[]): Record<string, string> {
+  const sections: Record<string, string> = {}
+  let current = ''
+  for (const key of keys) {
+    if (SECTION_HEADERS[key])
+      current = SECTION_HEADERS[key]
+    sections[key] = current
+  }
+  return sections
+}
+
+function modeToYaml(mode: Record<string, any>, indent: string, sections: Record<string, string>): string {
   const lines: string[] = []
+  let currentSection: string | undefined
   for (const [key, value] of Object.entries(mode)) {
-    const section = SECTION_HEADERS[key]
-    if (section)
-      lines.push(`      # ${section}`)
-    const formatted = formatValue(value)
-    if (formatted.includes('\n')) {
-      lines.push(`      ${key}: |${formatted}`)
+    const section = sections[key]
+    if (section && section !== currentSection) {
+      lines.push(`${indent}# ${section}`)
+      currentSection = section
     }
-    else {
-      lines.push(`      ${key}: ${formatted}`)
-    }
+    lines.push(`${indent}${key}: ${formatValue(value)}`)
   }
   return lines.join('\n')
 }
@@ -88,11 +137,6 @@ function cardModYaml(transitions: boolean): string {
 
   const moreInfoFade = transitions
     ? `        transition: background-color 0.5s ease;
-`
-    : ''
-
-  const viewFade = transitions
-    ? `            transition: background-color 0.5s ease;
 `
     : ''
 
@@ -143,28 +187,6 @@ ${moreInfoFade}     }
      :host {
         --ha-card-box-shadow: none;
      }
-  card-mod-view-yaml: |
-    hui-sidebar-view:
-      $: |
-        .container {
-            overflow: hidden;
-${viewFade}        }
-        @media only screen and (min-width: 768px) {
-            .container {
-              max-width: 520px;
-              margin: auto !important;
-              width: -webkit-fill-available;
-            }
-        }
-        #wrapper: |
-          $: |
-            #progressContainer {
-                border-radius: 14px !important;
-        }
-      .: |
-        "#view>hui-view>hui-sidebar-view$#main>hui-card-options:nth-child(7)>vertical-stack-in-card$ha-card>div>hui-horizontal-stack-card$#root>hui-grid-card$#root>hui-entities-card$#states>div:nth-child(4)>slider-entity-row$div>ha-slider$#sliderBar$#progressContainer" {
-            border-radius: 14px !important;
-        }
   card-mod-card: |
     ha-card {
 ${cardFade}      border-style: none !important;
@@ -172,10 +194,36 @@ ${cardFade}      border-style: none !important;
 ${widgetsFade}`
 }
 
+function commonPaletteYaml(): string {
+  const lines = ['  # ArtLab palette']
+  for (const [key, value] of Object.entries(ART_LAB_ACCENTS))
+    lines.push(`  ${key}: "${value}"`)
+  lines.push('  # ArtLab rooms')
+  for (const [key, value] of Object.entries(ART_LAB_ROOMS))
+    lines.push(`  ${key}: "${value}"`)
+  return lines.join('\n')
+}
+
 export function getHomeAssistantThemeFamily(options: HomeAssistantThemeOptions = {}): string {
   const transitions = options.transitions ?? true
   const dark = getMode({ color: 'dark', name: 'ArtLab Dark', ...options })
   const light = getMode({ color: 'light', name: 'ArtLab Light', ...options })
+
+  // Variables identical in both modes are hoisted to the theme common level;
+  // the Home Assistant engine merges them with the active mode.
+  const common: Record<string, any> = {}
+  const darkOnly: Record<string, any> = {}
+  const lightOnly: Record<string, any> = {}
+  for (const [key, value] of Object.entries(dark)) {
+    if (value === light[key]) {
+      common[key] = value
+    }
+    else {
+      darkOnly[key] = value
+      lightOnly[key] = light[key]
+    }
+  }
+  const sections = buildSections(Object.keys(dark))
 
   return `# ArtLab theme
 # Colors: ArtLab palette, primary/secondary overridable through the generator options
@@ -184,9 +232,11 @@ export function getHomeAssistantThemeFamily(options: HomeAssistantThemeOptions =
 ArtLab:
   modes:
     dark:
-${modeToYaml(dark)}
+${modeToYaml(darkOnly, '      ', sections)}
     light:
-${modeToYaml(light)}
+${modeToYaml(lightOnly, '      ', sections)}
+${modeToYaml(common, '  ', sections)}
+${commonPaletteYaml()}
 ${cardModYaml(transitions)}`
 }
 
@@ -202,15 +252,6 @@ function getMode(options: GetThemeOptions & HomeAssistantThemeOptions): Record<s
 
   // Secondary text keeps the main text hue at ~56% opacity (0x8f).
   const secondaryText = `${foreground.slice(0, 7)}8f`
-
-  // Color variants: <color>100 (lightest tint) through <color>1000 (darkest
-  // shade), following the automatic dark/light inversion of getColors().
-  const colorVariants: Record<string, string> = {}
-  for (const name of ['blue', 'green', 'orange', 'red', 'yellow', 'purple', 'pink'] as const) {
-    colors[name].forEach((value, i) => {
-      colorVariants[`${name}${(i + 1) * 100}`] = value
-    })
-  }
 
   return {
     // Fonts
@@ -266,22 +307,26 @@ function getMode(options: GetThemeOptions & HomeAssistantThemeOptions): Record<s
     'markdown-code-background-color': 'var(--background-color)',
 
     // Grays
-    // gray100 and gray1000 are fixed: the navbar keeps a black background with
-    // light icons in both modes. gray400 follows the dark/light inversion.
-    'gray100': '#f6f8fa',
     'gray400': colors.gray[4],
-    'gray1000': '#111111',
 
     // Pastel accents
-    'pastel-blue': colors.blue[2],
-    'pastel-green': colors.green[2],
-    'pastel-orange': colors.orange[2],
-    'pastel-red': colors.red[2],
-    'pastel-yellow': colors.yellow[2],
-    'pastel-purple': colors.purple[2],
+    'pastel-blue': 'var(--artlab-blue)',
+    'pastel-green': 'var(--artlab-green)',
+    'pastel-purple': 'var(--artlab-purple)',
+
+    // Palette
+    'blue': 'var(--artlab-blue)',
+    'cyan': 'var(--artlab-blue)',
+    'green': 'var(--artlab-green)',
+    'orange': 'var(--artlab-orange)',
+    'red': 'var(--artlab-red)',
+    'yellow': 'var(--artlab-yellow)',
+    'purple': 'var(--artlab-purple)',
+    'pink': 'var(--artlab-pink)',
+    'amber': 'var(--artlab-yellow)',
 
     // Color variants
-    ...colorVariants,
+    ...NUMBERED_ALIASES,
 
     // Card - geometry from Bubble v1.2 (round, padding, margin, gaps, borders)
     'card-background-color': 'var(--ha-card-background)',
@@ -290,8 +335,8 @@ function getMode(options: GetThemeOptions & HomeAssistantThemeOptions): Record<s
     'ha-card-border-radius': '28px',
     'ha-card-border-style': 'solid',
     'ha-card-border-width': '0px',
-    'ha-card-border-color': 'none',
-    'border-color': 'none',
+    'ha-card-border-color': 'transparent',
+    'border-color': 'transparent',
     'grid-card-gap': '18px',
     'horizontal-stack-card-margin': '0 10px',
     'border-style': 'none',
@@ -304,14 +349,15 @@ function getMode(options: GetThemeOptions & HomeAssistantThemeOptions): Record<s
     'paper-item-icon-active-color': 'var(--accent-color)',
 
     // Rooms
-    'room-livingroom': colors.green[2],
-    'room-bedroom': colors.purple[2],
-    'room-kitchen': colors.orange[2],
-    'room-bathroom': colors.blue[2],
-    'room-entry': colors.purple[1],
-    'room-hallway': colors.orange[1],
-    'room-garage': colors.gray[2],
-    'room-garden': colors.green[1],
+    'room-livingroom': 'var(--artlab-room-livingroom)',
+    'room-bedroom': 'var(--artlab-room-bedroom)',
+    'room-kitchen': 'var(--artlab-room-kitchen)',
+    'room-bathroom': 'var(--artlab-room-bathroom)',
+    'room-entry': 'var(--artlab-room-entry)',
+    'room-hallway': 'var(--artlab-room-hallway)',
+    'room-security': 'var(--artlab-room-security)',
+    'room-garage': 'var(--artlab-room-garage)',
+    'room-garden': 'var(--artlab-room-garden)',
 
     // Sidebar
     'sidebar-background-color': 'var(--background-color)',
@@ -359,13 +405,6 @@ function getMode(options: GetThemeOptions & HomeAssistantThemeOptions): Record<s
     'label-badge-yellow': 'rgba(222,176,107,1)',
 
     'paper-input-container-focus-color': 'var(--accent-color)',
-
-    // Custom Header
-    'ch-background': 'var(--background-color)',
-    'ch-active-tab-color': 'var(--accent-color)',
-    'ch-notification-dot-color': 'var(--accent-color)',
-    'ch-all-tabs-color': 'var(--sidebar-icon-color)',
-    'ch-tab-indicator-color': 'var(--accent-color)',
 
     // Mini Mediaplayer
     'mini-media-player-base-color': 'var(--text-color)',
