@@ -38,6 +38,9 @@ const SECTION_HEADERS: Record<string, string> = {
   'mdc-text-field-fill-color': 'Text Fields and Dropdown',
   'app-header-background-color': 'Main Colors',
   'background-color': 'Background',
+  'gray100': 'Grays',
+  'pastel-blue': 'Pastel accents',
+  'blue100': 'Color variants',
   'card-background-color': 'Card - geometry from Bubble v1.2',
   'paper-item-icon-color': 'Icons',
   'room-livingroom': 'Rooms',
@@ -200,6 +203,15 @@ function getMode(options: GetThemeOptions & HomeAssistantThemeOptions): Record<s
   // Secondary text keeps the main text hue at ~56% opacity (0x8f).
   const secondaryText = `${foreground.slice(0, 7)}8f`
 
+  // Color variants: <color>100 (lightest tint) through <color>1000 (darkest
+  // shade), following the automatic dark/light inversion of getColors().
+  const colorVariants: Record<string, string> = {}
+  for (const name of ['blue', 'green', 'orange', 'red', 'yellow', 'purple', 'pink'] as const) {
+    colors[name].forEach((value, i) => {
+      colorVariants[`${name}${(i + 1) * 100}`] = value
+    })
+  }
+
   return {
     // Fonts
     'primary-font-family': 'Inter, Roboto, sans-serif',
@@ -252,6 +264,24 @@ function getMode(options: GetThemeOptions & HomeAssistantThemeOptions): Record<s
     'background-color-2': softActiveBackground,
     'secondary-background-color': 'var(--background-color-2)',
     'markdown-code-background-color': 'var(--background-color)',
+
+    // Grays
+    // gray100 and gray1000 are fixed: the navbar keeps a black background with
+    // light icons in both modes. gray400 follows the dark/light inversion.
+    'gray100': '#f6f8fa',
+    'gray400': colors.gray[4],
+    'gray1000': '#111111',
+
+    // Pastel accents
+    'pastel-blue': colors.blue[2],
+    'pastel-green': colors.green[2],
+    'pastel-orange': colors.orange[2],
+    'pastel-red': colors.red[2],
+    'pastel-yellow': colors.yellow[2],
+    'pastel-purple': colors.purple[2],
+
+    // Color variants
+    ...colorVariants,
 
     // Card - geometry from Bubble v1.2 (round, padding, margin, gaps, borders)
     'card-background-color': 'var(--ha-card-background)',
