@@ -1,6 +1,26 @@
 import type { GetThemeOptions } from './helper'
 import { createThemeHelpers } from './helper'
 
+export interface HomeAssistantThemeOptions {
+  /**
+   * Primary (accent) color, applied to both modes.
+   * Must be a 6-digit hex color. Defaults to the ArtLab palette accent of each mode.
+   */
+  primaryColor?: string
+  /**
+   * Secondary color, applied to both modes.
+   * Exposed as the `secondary-color` theme variable and used for secondary
+   * interaction elements (hover, medium accent). Defaults to the primary color.
+   */
+  secondaryColor?: string
+  /**
+   * Include the card-mod CSS transition rules (smooth dark/light switching).
+   * Defaults to true. Layout rules (max-width, hidden header, dialog radius)
+   * are always kept.
+   */
+  transitions?: boolean
+}
+
 function formatValue(value: any): string {
   if (typeof value === 'string') {
     if (value.includes('\n'))
@@ -20,6 +40,7 @@ const SECTION_HEADERS: Record<string, string> = {
   'background-color': 'Background',
   'card-background-color': 'Card - geometry from Bubble v1.2',
   'paper-item-icon-color': 'Icons',
+  'room-livingroom': 'Rooms',
   'sidebar-background-color': 'Sidebar',
   'paper-slider-knob-color': 'Sliders',
   'paper-toggle-button-checked-bar-color': 'Toggle',
@@ -49,31 +70,51 @@ function modeToYaml(mode: Record<string, any>): string {
   return lines.join('\n')
 }
 
-export function getHomeAssistantThemeFamily(): string {
-  const dark = getMode({ color: 'dark', name: 'ArtLab Dark' })
-  const light = getMode({ color: 'light', name: 'ArtLab Light' })
-
-  return `# ArtLab theme
-# Colors: ArtLab (custom, untouched)
-# Geometry (round, padding, margin, gaps, borders): based on Bubble Light & Dark v1.2
-# Bubble is a modified Noctis (aFFekopp) maintained by Clooos.
-ArtLab:
-  modes:
-    dark:
-${modeToYaml(dark)}
-    light:
-${modeToYaml(light)}
-  card-mod-theme: ArtLab
-  # Card-Mod layout from Bubble v1.2, color transitions kept for ArtLab
-  card-mod-root-yaml: |
-    .: |
-      app-header {
+// Card-Mod layout from Bubble v1.2. Only the transition rules are optional;
+// the layout rules are always kept.
+function cardModYaml(transitions: boolean): string {
+  const rootFade = transitions
+    ? `      app-header {
         transition: background-color 0.5s ease;
       }
       ha-sidebar {
         transition: background-color 0.5s ease;
       }
-      @media only screen and (max-width: 768px) {
+`
+    : ''
+
+  const moreInfoFade = transitions
+    ? `        transition: background-color 0.5s ease;
+`
+    : ''
+
+  const viewFade = transitions
+    ? `            transition: background-color 0.5s ease;
+`
+    : ''
+
+  const cardFade = transitions
+    ? `      transition: background-color 0.5s ease;
+`
+    : ''
+
+  const widgetsFade = transitions
+    ? `    .state-icon, ha-icon, ha-state-icon {
+      transition: color 0.5s ease;
+    }
+    mwc-button, paper-button, ha-icon-button {
+      transition: background-color 0.5s ease, color 0.5s ease;
+    }
+    ha-slider, paper-slider {
+      transition: opacity 0.5s ease;
+    }
+`
+    : ''
+
+  return `  card-mod-theme: ArtLab
+  card-mod-root-yaml: |
+    .: |
+${rootFade}      @media only screen and (max-width: 768px) {
           .header {
             display: none;
             opacity: 0;
@@ -94,8 +135,7 @@ ${modeToYaml(light)}
      .mdc-dialog .mdc-dialog__container .mdc-dialog__surface {
         box-shadow: none !important;
         border-radius: var(--ha-card-border-radius);
-        transition: background-color 0.5s ease;
-     }
+${moreInfoFade}     }
     .: |
      :host {
         --ha-card-box-shadow: none;
@@ -105,8 +145,7 @@ ${modeToYaml(light)}
       $: |
         .container {
             overflow: hidden;
-            transition: background-color 0.5s ease;
-        }
+${viewFade}        }
         @media only screen and (min-width: 768px) {
             .container {
               max-width: 520px;
@@ -125,31 +164,41 @@ ${modeToYaml(light)}
         }
   card-mod-card: |
     ha-card {
-      transition: background-color 0.5s ease;
-      border-style: none !important;
+${cardFade}      border-style: none !important;
     }
-    .state-icon, ha-icon, ha-state-icon {
-      transition: color 0.5s ease;
-    }
-    mwc-button, paper-button, ha-icon-button {
-      transition: background-color 0.5s ease, color 0.5s ease;
-    }
-    ha-slider, paper-slider {
-      transition: opacity 0.5s ease;
-    }`
+${widgetsFade}`
 }
 
-function getMode(options: GetThemeOptions): Record<string, any> {
-  const { pick, v } = createThemeHelpers(options)
+export function getHomeAssistantThemeFamily(options: HomeAssistantThemeOptions = {}): string {
+  const transitions = options.transitions ?? true
+  const dark = getMode({ color: 'dark', name: 'ArtLab Dark', ...options })
+  const light = getMode({ color: 'light', name: 'ArtLab Light', ...options })
+
+  return `# ArtLab theme
+# Colors: ArtLab palette, primary/secondary overridable through the generator options
+# Geometry (round, padding, margin, gaps, borders): based on Bubble Light & Dark v1.2
+# Bubble is a modified Noctis (aFFekopp) maintained by Clooos.
+ArtLab:
+  modes:
+    dark:
+${modeToYaml(dark)}
+    light:
+${modeToYaml(light)}
+${cardModYaml(transitions)}`
+}
+
+function getMode(options: GetThemeOptions & HomeAssistantThemeOptions): Record<string, any> {
+  const { pick, v, colors } = createThemeHelpers(options)
 
   const background = v('background')!
   const foreground = v('foreground')!
-  const primary = v('primary')!
+  const primary = options.primaryColor ?? v('primary')!
+  const secondary = options.secondaryColor ?? primary
   const activeBackground = v('activeBackground')!
   const softActiveBackground = v('softActiveBackground')!
-  const secondaryForeground = v('secondaryForeground')!
 
-  const isDark = options.color === 'dark'
+  // Secondary text keeps the main text hue at ~56% opacity (0x8f).
+  const secondaryText = `${foreground.slice(0, 7)}8f`
 
   return {
     // Fonts
@@ -168,7 +217,7 @@ function getMode(options: GetThemeOptions): Record<string, any> {
     'primary-text-color': 'var(--text-color)',
     'text-primary-color': 'var(--text-color)',
     'sidebar-text-color': 'var(--text-color)',
-    'secondary-text-color': secondaryForeground,
+    'secondary-text-color': secondaryText,
     'text-medium-light-color': pick({ light: '#6c6f85', dark: '#A0A2A8' }),
     'text-medium-color': pick({ light: '#6c6f85', dark: '#80828A' }),
     'disabled-text-color': pick({ light: '#6c6f85', dark: '#626569' }),
@@ -187,14 +236,15 @@ function getMode(options: GetThemeOptions): Record<string, any> {
     'input-disabled-label-ink-color': 'var(--disabled-text-color)',
     'input-idle-line-color': 'var(--background-color)',
     'input-dropdown-icon-color': 'var(--secondary-text-color)',
-    'input-hover-line-color': 'var(--primary-color)',
-    'code-editor-background-color': pick({ light: '#ccd0da', dark: '#222c40' }),
-    'codemirror-property': 'var(--accent-color)',
+    'input-hover-line-color': 'var(--secondary-color)',
+    'code-editor-background-color': 'var(--secondary-background-color)',
+    'codemirror-property': 'var(--text-color)',
 
     // Main Colors
     'app-header-background-color': 'var(--background-color)',
     'accent-color': primary,
-    'accent-medium-color': 'var(--accent-color)',
+    'secondary-color': secondary,
+    'accent-medium-color': 'var(--secondary-color)',
 
     // Background
     'background-color': background,
@@ -208,22 +258,30 @@ function getMode(options: GetThemeOptions): Record<string, any> {
     'ha-card-background': activeBackground,
     'ha-card-box-shadow': 'none',
     'ha-card-border-radius': '28px',
-    'ha-card-border-style': isDark ? 'solid' : 'solid !important',
-    'ha-card-border-width': isDark ? '0px' : '1px !important',
-    'ha-card-border-color': isDark ? 'none' : 'none !important',
+    'ha-card-border-style': 'solid',
+    'ha-card-border-width': '0px',
+    'ha-card-border-color': 'none',
     'border-color': 'none',
     'grid-card-gap': '18px',
     'horizontal-stack-card-margin': '0 10px',
-    'border-style': isDark ? 'none' : 'none !important',
-    'ha-card-background-active': isDark
-      ? `${primary}66 radial-gradient(at bottom, ${primary}80 0%, ${primary}00 70%)`
-      : `${activeBackground}66 radial-gradient(at bottom, ${activeBackground}80 0%, ${activeBackground}00 70%)`,
+    'border-style': 'none',
+    'ha-card-background-active': 'var(--ha-card-background)',
     'control-button-border-radius': '50px',
     'control-button-background-color': 'var(--ha-card-background)',
 
     // Icons
     'paper-item-icon-color': 'var(--text-color)',
     'paper-item-icon-active-color': 'var(--accent-color)',
+
+    // Rooms
+    'room-livingroom': colors.green[2],
+    'room-bedroom': colors.purple[2],
+    'room-kitchen': colors.orange[2],
+    'room-bathroom': colors.blue[2],
+    'room-entry': colors.purple[1],
+    'room-hallway': colors.orange[1],
+    'room-garage': colors.gray[2],
+    'room-garden': colors.green[1],
 
     // Sidebar
     'sidebar-background-color': 'var(--background-color)',
@@ -232,7 +290,7 @@ function getMode(options: GetThemeOptions): Record<string, any> {
     'sidebar-selected-text-color': 'var(--text-color)',
     'sidebar-selected-background-color': `${primary}25`,
     'paper-listbox-background-color': 'var(--sidebar-background-color)',
-    'divider-color': activeBackground,
+    'divider-color': 'var(--secondary-background-color)',
     'light-primary-color': 'var(--ha-card-background)',
 
     // Sliders
@@ -247,8 +305,7 @@ function getMode(options: GetThemeOptions): Record<string, any> {
 
     // Switch
     'switch-unchecked-color': pick({ light: '#9ca0b0', dark: '#70889e' }),
-    'switch-checked-button-color': isDark ? 'var(--accent-color)' : 'var(--on)',
-    ...(!isDark ? { on: '#6c6f85' } : {}),
+    'switch-checked-button-color': 'var(--accent-color)',
     'switch-unchecked-track-color': 'var(--background-color-2)',
     'switch-checked-track-color': 'var(--background-color-2)',
 

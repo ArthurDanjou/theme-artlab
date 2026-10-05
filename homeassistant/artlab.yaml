@@ -1,5 +1,5 @@
 # ArtLab theme
-# Colors: ArtLab (custom, untouched)
+# Colors: ArtLab palette, primary/secondary overridable through the generator options
 # Geometry (round, padding, margin, gaps, borders): based on Bubble Light & Dark v1.2
 # Bubble is a modified Noctis (aFFekopp) maintained by Clooos.
 ArtLab:
@@ -20,7 +20,7 @@ ArtLab:
       primary-text-color: "var(--text-color)"
       text-primary-color: "var(--text-color)"
       sidebar-text-color: "var(--text-color)"
-      secondary-text-color: "#dedcd590"
+      secondary-text-color: "#dbd7ca8f"
       text-medium-light-color: "#A0A2A8"
       text-medium-color: "#80828A"
       disabled-text-color: "#626569"
@@ -38,13 +38,14 @@ ArtLab:
       input-disabled-label-ink-color: "var(--disabled-text-color)"
       input-idle-line-color: "var(--background-color)"
       input-dropdown-icon-color: "var(--secondary-text-color)"
-      input-hover-line-color: "var(--primary-color)"
-      code-editor-background-color: "#222c40"
-      codemirror-property: "var(--accent-color)"
+      input-hover-line-color: "var(--secondary-color)"
+      code-editor-background-color: "var(--secondary-background-color)"
+      codemirror-property: "var(--text-color)"
       # Main Colors
       app-header-background-color: "var(--background-color)"
       accent-color: "#74c7ec"
-      accent-medium-color: "var(--accent-color)"
+      secondary-color: "#74c7ec"
+      accent-medium-color: "var(--secondary-color)"
       # Background
       background-color: "#121212"
       primary-background-color: "var(--background-color)"
@@ -63,12 +64,21 @@ ArtLab:
       grid-card-gap: "18px"
       horizontal-stack-card-margin: "0 10px"
       border-style: "none"
-      ha-card-background-active: "#74c7ec66 radial-gradient(at bottom, #74c7ec80 0%, #74c7ec00 70%)"
+      ha-card-background-active: "var(--ha-card-background)"
       control-button-border-radius: "50px"
       control-button-background-color: "var(--ha-card-background)"
       # Icons
       paper-item-icon-color: "var(--text-color)"
       paper-item-icon-active-color: "var(--accent-color)"
+      # Rooms
+      room-livingroom: "#176f2c"
+      room-bedroom: "#4c2889"
+      room-kitchen: "#d15704"
+      room-bathroom: "#044289"
+      room-entry: "#3a1d6e"
+      room-hallway: "#c24e00"
+      room-garage: "#444d56"
+      room-garden: "#165c26"
       # Sidebar
       sidebar-background-color: "var(--background-color)"
       sidebar-icon-color: "#98a7b9"
@@ -76,7 +86,7 @@ ArtLab:
       sidebar-selected-text-color: "var(--text-color)"
       sidebar-selected-background-color: "#74c7ec25"
       paper-listbox-background-color: "var(--sidebar-background-color)"
-      divider-color: "#181818"
+      divider-color: "var(--secondary-background-color)"
       light-primary-color: "var(--ha-card-background)"
       # Sliders
       paper-slider-knob-color: "var(--accent-color)"
@@ -132,7 +142,7 @@ ArtLab:
       primary-text-color: "var(--text-color)"
       text-primary-color: "var(--text-color)"
       sidebar-text-color: "var(--text-color)"
-      secondary-text-color: "#393a3490"
+      secondary-text-color: "#393a348f"
       text-medium-light-color: "#6c6f85"
       text-medium-color: "#6c6f85"
       disabled-text-color: "#6c6f85"
@@ -150,13 +160,14 @@ ArtLab:
       input-disabled-label-ink-color: "var(--disabled-text-color)"
       input-idle-line-color: "var(--background-color)"
       input-dropdown-icon-color: "var(--secondary-text-color)"
-      input-hover-line-color: "var(--primary-color)"
-      code-editor-background-color: "#ccd0da"
-      codemirror-property: "var(--accent-color)"
+      input-hover-line-color: "var(--secondary-color)"
+      code-editor-background-color: "var(--secondary-background-color)"
+      codemirror-property: "var(--text-color)"
       # Main Colors
       app-header-background-color: "var(--background-color)"
       accent-color: "#f2a272"
-      accent-medium-color: "var(--accent-color)"
+      secondary-color: "#f2a272"
+      accent-medium-color: "var(--secondary-color)"
       # Background
       background-color: "#ffffff"
       primary-background-color: "var(--background-color)"
@@ -168,19 +179,28 @@ ArtLab:
       ha-card-background: "#f7f7f7"
       ha-card-box-shadow: "none"
       ha-card-border-radius: "28px"
-      ha-card-border-style: "solid !important"
-      ha-card-border-width: "1px !important"
-      ha-card-border-color: "none !important"
+      ha-card-border-style: "solid"
+      ha-card-border-width: "0px"
+      ha-card-border-color: "none"
       border-color: "none"
       grid-card-gap: "18px"
       horizontal-stack-card-margin: "0 10px"
-      border-style: "none !important"
-      ha-card-background-active: "#f7f7f766 radial-gradient(at bottom, #f7f7f780 0%, #f7f7f700 70%)"
+      border-style: "none"
+      ha-card-background-active: "var(--ha-card-background)"
       control-button-border-radius: "50px"
       control-button-background-color: "var(--ha-card-background)"
       # Icons
       paper-item-icon-color: "var(--text-color)"
       paper-item-icon-active-color: "var(--accent-color)"
+      # Rooms
+      room-livingroom: "#bef5cb"
+      room-bedroom: "#d1bcf9"
+      room-kitchen: "#ffd1ac"
+      room-bathroom: "#c8e1ff"
+      room-entry: "#e6dcfd"
+      room-hallway: "#ffebda"
+      room-garage: "#e1e4e8"
+      room-garden: "#dcffe4"
       # Sidebar
       sidebar-background-color: "var(--background-color)"
       sidebar-icon-color: "#ccd0da"
@@ -188,7 +208,7 @@ ArtLab:
       sidebar-selected-text-color: "var(--text-color)"
       sidebar-selected-background-color: "#f2a27225"
       paper-listbox-background-color: "var(--sidebar-background-color)"
-      divider-color: "#f7f7f7"
+      divider-color: "var(--secondary-background-color)"
       light-primary-color: "var(--ha-card-background)"
       # Sliders
       paper-slider-knob-color: "var(--accent-color)"
@@ -200,8 +220,7 @@ ArtLab:
       mdc-theme-primary: "var(--accent-color)"
       # Switch
       switch-unchecked-color: "#9ca0b0"
-      switch-checked-button-color: "var(--on)"
-      on: "#6c6f85"
+      switch-checked-button-color: "var(--accent-color)"
       switch-unchecked-track-color: "var(--background-color-2)"
       switch-checked-track-color: "var(--background-color-2)"
       # Radio Button
@@ -230,7 +249,6 @@ ArtLab:
       mini-media-player-base-color: "var(--text-color)"
       mini-media-player-accent-color: "var(--accent-color)"
   card-mod-theme: ArtLab
-  # Card-Mod layout from Bubble v1.2, color transitions kept for ArtLab
   card-mod-root-yaml: |
     .: |
       app-header {
