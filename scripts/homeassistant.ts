@@ -85,15 +85,15 @@ const ART_LAB_ACCENTS: Record<string, string> = {
 }
 
 const ART_LAB_ROOMS: Record<string, string> = {
-  'artlab-room-livingroom': '#8faf82',
-  'artlab-room-bedroom': '#b88faf',
-  'artlab-room-kitchen': '#d3b07a',
-  'artlab-room-bathroom': '#7eafc1',
-  'artlab-room-entry': '#a594bd',
-  'artlab-room-hallway': '#87b7a5',
-  'artlab-room-security': '#d19a85',
-  'artlab-room-garage': '#8fa7b8',
-  'artlab-room-garden': '#9bb77b',
+  'artlab-room-livingroom': '#bbdfbb',
+  'artlab-room-bedroom': '#d6cae7',
+  'artlab-room-kitchen': '#f4ecbe',
+  'artlab-room-bathroom': '#c6e1e7',
+  'artlab-room-entry': '#ddbae1',
+  'artlab-room-hallway': '#c5e5d5',
+  'artlab-room-security': '#ebbdbc',
+  'artlab-room-garage': '#bcc9dc',
+  'artlab-room-garden': '#e3eacd',
 }
 
 // Maps every emitted variable to its section title, following the source order.
