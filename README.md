@@ -13,7 +13,7 @@ Product Icons | <a href="https://github.com/antfu/vscode-icons-carbon">Carbon</a
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Inspiration | <a href="https://github.com/antfu/vitesse">Vitesse</a> + <a href="https://github.com/catppuccin/catppuccin">Catppuccin</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</samp></sub>
 </p>
 
-ArtLab is a cross-platform theme that blends the clarity of Vitesse (by antfu) with the cozy palettes of Catppuccin. Available for VS Code, Home Assistant, Zed, Ghostty, and Thunderbird.
+ArtLab is a cross-platform theme that blends the clarity of Vitesse (by antfu) with the cozy palettes of Catppuccin. Available for VS Code, Home Assistant, Mealie, Zed, Ghostty, and Thunderbird.
 
 ## Match with System
 
@@ -37,6 +37,19 @@ Install from the [Visual Studio Marketplace](https://marketplace.visualstudio.co
 ### Home Assistant
 
 Copy [`homeassistant/artlab.yaml`](./homeassistant/artlab.yaml) to your Home Assistant `themes/` directory, then reload themes and select **ArtLab** in your profile settings.
+
+### Mealie
+
+Copy the variables from [`mealie/artlab.env`](./mealie/artlab.env) into the `environment:` section of your Mealie `docker-compose.yml`, or reference the file with `env_file`:
+
+```yaml
+services:
+  mealie:
+    env_file:
+      - path/to/artlab.env
+```
+
+Then recreate the container. Clear browser cookies if the old colors persist.
 
 ### Zed
 

@@ -31,6 +31,7 @@
     "LICENSE.md",
     "homeassistant/*",
     "icon.png",
+    "mealie/*",
     "raycast/*",
     "vscode/*",
     "zed/*"

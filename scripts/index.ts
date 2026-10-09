@@ -1,6 +1,7 @@
 import fs from 'fs-extra'
 import { getGhosttyTheme } from './ghostty'
 import { getHomeAssistantThemeFamily } from './homeassistant'
+import { getMealieThemeFamily } from './mealie'
 import { getRaycastTheme } from './raycast'
 import getTheme from './theme'
 import { getThunderbirdManifest } from './thunderbird'
@@ -78,6 +79,12 @@ async function main() {
   await fs.writeFile(
     './homeassistant/artlab.yaml',
     getHomeAssistantThemeFamily(),
+  )
+
+  await fs.mkdir('./mealie', { recursive: true })
+  await fs.writeFile(
+    './mealie/artlab.env',
+    getMealieThemeFamily(),
   )
 
   const { version } = await fs.readJSON('./package.json')
