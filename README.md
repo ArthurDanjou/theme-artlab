@@ -13,7 +13,7 @@ Product Icons | <a href="https://github.com/antfu/vscode-icons-carbon">Carbon</a
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Inspiration | <a href="https://github.com/antfu/vitesse">Vitesse</a> + <a href="https://github.com/catppuccin/catppuccin">Catppuccin</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</samp></sub>
 </p>
 
-ArtLab is a cross-platform theme that blends the clarity of Vitesse (by antfu) with the cozy palettes of Catppuccin. Available for VS Code, Home Assistant, Mealie, Zed, Ghostty, and Thunderbird.
+ArtLab is a cross-platform theme that blends the clarity of Vitesse (by antfu) with the cozy palettes of Catppuccin. Available for VS Code, Home Assistant, Mealie, Zed, Ghostty, Thunderbird, and T3 Code.
 
 ## Match with System
 
@@ -75,6 +75,12 @@ To install one of them:
 2. In Thunderbird, open the Add-ons Manager, click the gear icon, choose **Install Add-on From File**, and select the `.xpi` file.
 
 Thunderbird static themes cannot switch automatically between light and dark, so install the variant matching your preference.
+
+### T3 Code
+
+In T3 Code, open **Settings → Appearance**, choose **Add theme**, and select [`t3code/artlab.json`](./t3code/artlab.json). The file contains both the light and dark palettes, so a single import covers both appearances.
+
+To publish the theme from a T3 Code server, copy [`t3code/artlab.json`](./t3code/artlab.json) to `~/.t3/userdata/themes/artlab.json` (or the `themes` directory under your custom state directory), then run `t3 theme set artlab` or select **ArtLab** in Settings → Appearance.
 
 ## Links
 

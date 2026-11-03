@@ -3,6 +3,7 @@ import { getGhosttyTheme } from './ghostty'
 import { getHomeAssistantThemeFamily } from './homeassistant'
 import { getMealieThemeFamily } from './mealie'
 import { getRaycastTheme } from './raycast'
+import { getT3CodeTheme } from './t3code'
 import getTheme from './theme'
 import { getThunderbirdManifest } from './thunderbird'
 import { getZedThemeFamily } from './zed'
@@ -74,6 +75,13 @@ async function main() {
       { spaces: 2 },
     ),
   ])
+
+  await fs.mkdir('./t3code', { recursive: true })
+  await fs.writeJSON(
+    './t3code/artlab.json',
+    getT3CodeTheme(),
+    { spaces: 2 },
+  )
 
   await fs.mkdir('./homeassistant', { recursive: true })
   await fs.writeFile(
