@@ -19,15 +19,15 @@ function getGhosttyDir(): string {
 async function installZed() {
   const targetDir = path.join(home, '.config', 'zed', 'themes')
   await fs.ensureDir(targetDir)
-  await fs.copy('./zed/artlab.json', path.join(targetDir, 'artlab.json'))
+  await fs.copy('./exports/zed/artlab.json', path.join(targetDir, 'artlab.json'))
   console.log(`Installed Zed theme to ${targetDir}`)
 }
 
 async function installGhostty() {
   const targetDir = getGhosttyDir()
   await fs.ensureDir(targetDir)
-  await fs.copy('./ghostty/artlab-light', path.join(targetDir, 'artlab-light'))
-  await fs.copy('./ghostty/artlab-dark', path.join(targetDir, 'artlab-dark'))
+  await fs.copy('./exports/ghostty/artlab-light', path.join(targetDir, 'artlab-light'))
+  await fs.copy('./exports/ghostty/artlab-dark', path.join(targetDir, 'artlab-dark'))
   console.log(`Installed Ghostty themes to ${targetDir}`)
 }
 
