@@ -3,7 +3,7 @@
    Basé sur la palette ArtLab (Vitesse + Catppuccin) + effet glassmorphism
    Installation : Authentik Admin > Customization > Brands > Custom CSS
                 ou Système > Marques > Modifier > Custom CSS
-   Palette source : scripts/colors.ts / vscode/artlab-*.json
+   Palette source : scripts/colors.ts / exports/vscode/artlab-*.json
    ========================================================================== */
 
 /* ===== TOKENS ARTLAB — Light par défaut (identique à css-uptimekuma.css) ===== */
@@ -65,7 +65,7 @@
   color-scheme: light;
 }
 
-/* Dark — suit les valeurs ArtLab Dark (vscode/artlab-dark.json) */
+/* Dark — suit les valeurs ArtLab Dark (exports/vscode/artlab-dark.json) */
 :root.dark,
 html[data-theme="dark"],
 html.pf-v5-theme-dark,
